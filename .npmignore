@@ -1,5 +1,6 @@
 _site
 _includes
+_site
 index.md
 .editorconfig
 .eleventyignore
