@@ -4,3 +4,4 @@ _site
 index.md
 .editorconfig
 .eleventyignore
+package-lock.json
