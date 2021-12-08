@@ -1,5 +1,5 @@
 {
-  "name": "eleventy-plugin-external-links",
+  "name": "@aloskutov/eleventy-plugin-external-links",
   "version": "0.1.0",
   "description": "Eleventy external links plugin",
   "publishConfig": {
