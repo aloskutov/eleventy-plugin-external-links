@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or 'Eleventy demo site'}}</title>
+  <style>
+    body {
+      color: #333;
+      font-size: 18pt;
+    }
+    a {
+      color: navy;
+      -webkit-transition: color 1s;
+      transition: color 1s;
+    }
+    a:hover {
+      color: crimson;
+    }
+    .container {
+      margin: 0 auto;
+      max-width: 1280px;
+      min-width: 320px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+{{ content | safe }}
+  </div>
+</body>
+</html>

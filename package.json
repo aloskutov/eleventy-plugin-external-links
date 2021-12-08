@@ -1,0 +1,30 @@
+{
+  "name": "eleventy-plugin-external-links",
+  "version": "0.1.0",
+  "description": "Eleventy external links plugin",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": ".eleventy.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aloskutov/eleventy-plugin-external-links.git"
+  },
+  "keywords": [
+    "11ty",
+    "11ty-plugin",
+    "eleventy",
+    "eleventy-plugin"
+  ],
+  "author": "Alex Loskutov",
+  "license": "MIT",
+  "11ty": {
+    "compatibility": ">=0.11"
+  },
+  "bugs": {
+    "url": "https://github.com/aloskutov/eleventy-plugin-external-links/issues"
+  },
+  "dependencies": {
+    "jsdom": "^18.1.1"
+  }
+}
