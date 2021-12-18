@@ -13,7 +13,7 @@ module.exports = (elConfig, options = {}) => {
   );
 
   elConfig.addTransform('externalLinks', (content, outputPath) => {
-    if (!outputPath.endsWith(".html")) {
+    if (outputPath && !outputPath.endsWith(".html")) {
       return content;
     }
 
