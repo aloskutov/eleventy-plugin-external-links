@@ -1,6 +1,6 @@
 const { JSDOM } = require('jsdom');
 
-module.exports = (elConfig, options = {}) => {
+module.exports = (eleventyConfig, options = {}) => {
   options = Object.assign(
     {
       url: null,
@@ -12,7 +12,7 @@ module.exports = (elConfig, options = {}) => {
     options
   );
 
-  elConfig.addTransform('externalLinks', (content, outputPath) => {
+  eleventyConfig.addTransform('externalLinks', (content, outputPath) => {
     if (outputPath && !outputPath.endsWith(".html")) {
       return content;
     }
@@ -31,7 +31,7 @@ module.exports = (elConfig, options = {}) => {
       const linkTarget = link.getAttribute('target');
       let rel = '';
 
-      if (typeof options.rel === 'array' ) {
+      if (Array.isArray(options.rel)) {
         rel = options.rel.join(" ");
       } else {
         rel = options.rel;
