@@ -9,7 +9,7 @@
   "scripts": {
     "test": "npx ava",
     "coverage": " npx c8 --100 npm test",
-    "eslint": "npx eslint ./src"
+    "lint": "npx eslint ./src"
   },
   "main": ".eleventy.js",
   "repository": {
