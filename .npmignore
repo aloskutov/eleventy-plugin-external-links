@@ -2,6 +2,7 @@ _site
 _includes
 _site
 test
+coverage
 index.md
 .eslintrc.json
 .editorconfig
