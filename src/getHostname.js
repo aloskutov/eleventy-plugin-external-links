@@ -13,13 +13,8 @@ function getHostname(url, excludedProtocols = []) {
 
   if (!excludedProtocols.includes(protocol)) {
     const regex = new RegExp('^(?:\\w*.?\\/\\/)?([^\\/#\\?]*)\\/?', 'g');
-    try {
-      hostname = regex.exec(url)[1];
-    } catch (e) {
-      hostname = false;
-    } finally {
-      hostname = notHostname.includes(hostname) ? false : hostname;
-    }
+    hostname = regex.exec(url)[1];
+    hostname = notHostname.includes(hostname) ? false : hostname;
   }
   return hostname;
 }
