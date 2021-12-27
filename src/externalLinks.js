@@ -1,19 +1,5 @@
 const {JSDOM} = require('jsdom');
-
-/**
- * Extract hostname from url/link
- * @param {string} url link or url string
- * @return {string|boolean} hostname or false
- */
-function extractHostname(url) {
-  const regex = new RegExp('^(?:\\w*.?\\/\\/)?([^\\/]*)\\/?', 'g');
-  try {
-    return regex.exec(url)[1].toLowerCase();
-  } catch (e) {
-    console.error('External-Links: Hostname not found');
-    return false;
-  }
-}
+const getHostname = require('./getHostname');
 
 module.exports = function(content, outputPath, globalOptions = {}) {
   try {
@@ -22,47 +8,32 @@ module.exports = function(content, outputPath, globalOptions = {}) {
     }
   } catch (e) {
     if (e instanceof TypeError) {
-      console.error('External-Links: Undefined outputPath');
       return content;
     }
   }
 
-  const options = Object.assign(
-      {
-        url: null,
-        selector: 'a',
-        rel: ['noreferrer', 'nofollow', 'noopener', 'external'],
-        target: '_blank',
-        overwrite: true,
-      },
-      globalOptions,
-  );
+  const options = Object.assign({
+    url: '',
+    selector: 'a',
+    rel: ['noreferrer', 'nofollow', 'noopener', 'external'],
+    target: '_blank',
+    overwrite: true,
+    excludedProtocols: [],
+  }, globalOptions);
 
-  if (options.url === '') {
-    options.url = null;
-  }
-
-  const urlHostname = options.url ? extractHostname(options.url) : false;
-
+  const urlHostname = getHostname(options.url);
   const dom = new JSDOM(content);
   const document = dom.window.document;
   const [...links] = document.querySelectorAll(options.selector);
 
   links.forEach((link) => {
-    const href = link.getAttribute('href');
-    const hrefHostname = extractHostname(href);
+    const linkHref = link.getAttribute('href');
+    const linkHostname = getHostname(linkHref, options.excludedProtocols);
     const linkRel = link.getAttribute('rel');
     const linkTarget = link.getAttribute('target');
-    let rel = '';
+    const rel = Array.isArray(options.rel) ? options.rel.join(' ') : options.rel;
 
-    if (Array.isArray(options.rel)) {
-      rel = options.rel.join(' ');
-    } else {
-      rel = options.rel;
-    }
-
-    if (hrefHostname &&
-        hrefHostname !== urlHostname) {
+    if (linkHostname && linkHostname !== urlHostname) {
       if (options.overwrite) {
         link.setAttribute('rel', rel);
         link.setAttribute('target', options.target);
