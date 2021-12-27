@@ -18,7 +18,9 @@
     "11ty",
     "11ty-plugin",
     "eleventy",
-    "eleventy-plugin"
+    "eleventy-plugin",
+    "plugin",
+    "external-links"
   ],
   "author": "Alex Loskutov",
   "license": "MIT",
