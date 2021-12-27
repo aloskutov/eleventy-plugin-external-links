@@ -12,8 +12,7 @@ test('Hostname with null', (t) => {
 });
 
 test('Hostname with undefined', (t) => {
-  const url = undefined;
-  t.is(getHostname(url), false);
+  t.is(getHostname(undefined), false);
 });
 
 test('Hostname is IP address', (t) => {
