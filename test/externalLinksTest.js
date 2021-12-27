@@ -47,10 +47,10 @@ test('External links', (t) => {
 test('External links rel:[noreferrer, nofollow]', (t) => {
   const outputPath = 'test.html';
   const config = {
-    rel: ['noreferrer', 'nofollow'],
+    rel: 'noreferrer',
   };
   const content = '<!doctype html><html><head></head><body><a href="www.google.com">Google</a></body></html>';
-  const result = '<!doctype html><html><head></head><body><a href="www.google.com" rel="noreferrer nofollow" target="_blank">Google</a></body></html>';
+  const result = '<!doctype html><html><head></head><body><a href="www.google.com" rel="noreferrer" target="_blank">Google</a></body></html>';
   t.is(externalLinks(content, outputPath, config), result);
 });
 
@@ -58,8 +58,9 @@ test('External links overwrite:false', (t) => {
   const outputPath = 'test.html';
   const config = {
     overwrite: false,
+    rel: 'noreferrer',
   };
-  const content = '<!doctype html><html><head></head><body><a href="www.google.com" rel="noreferrer nofollow">Google</a></body></html>';
-  const result = '<!doctype html><html><head></head><body><a href="www.google.com" rel="noreferrer nofollow" target="_blank">Google</a></body></html>';
+  const content = '<!doctype html><html><head></head><body><a href="www.google.com">Google</a></body></html>';
+  const result = '<!doctype html><html><head></head><body><a href="www.google.com" rel="noreferrer" target="_blank">Google</a></body></html>';
   t.is(externalLinks(content, outputPath, config), result);
 });
