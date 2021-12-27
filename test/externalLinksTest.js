@@ -1,3 +1,5 @@
+'use strict';
+
 const test = require('ava');
 const externalLinks = require('../src/externalLinks.js');
 

@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Get hostname from url or link
  * @param {string} url link or url string
