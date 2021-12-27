@@ -1,7 +1,9 @@
 _site
 _includes
 _site
+test
 index.md
+.eslintrc.json
 .editorconfig
 .eleventyignore
 package-lock.json

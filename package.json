@@ -1,13 +1,13 @@
 {
   "name": "@aloskutov/eleventy-plugin-external-links",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Eleventy external links plugin",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com",
+    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "scripts": {
-    "test": "echo \"No test specified\""
+    "test": "npx ava"
   },
   "main": ".eleventy.js",
   "repository": {
@@ -30,5 +30,10 @@
   },
   "dependencies": {
     "jsdom": "^18.1.1"
+  },
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "eslint": "^8.5.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
