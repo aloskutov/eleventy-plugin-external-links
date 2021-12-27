@@ -1,5 +1,7 @@
 # eleventy-plugin-external-links
 
+![example workflow](https://github.com/aloskutov/eleventy-plugin-external-links/actions/workflows/node.js.yml/badge.svg?test)
+
 Transform external links from `<a href='http://external-link'>` to `<a href='http://external-link'  rel='noreferrer nofollow noopener external' target='_blank'>`.
 
 ## Usage
