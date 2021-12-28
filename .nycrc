@@ -1,0 +1,6 @@
+{
+  "include": "src",
+  "check-coverage": true,
+  "lines": 100,
+  "reporter": ["text", "text-summary","clover","lcovonly"]
+}

@@ -7,4 +7,5 @@ index.md
 .eslintrc.json
 .editorconfig
 .eleventyignore
+.nycrc
 package-lock.json
