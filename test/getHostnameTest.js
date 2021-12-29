@@ -32,8 +32,18 @@ test('Hostname with https: protocol', (t) => {
   t.is(getHostname(url), 'www.example.com');
 });
 
+test('Hostname with https: protocol & port', (t) => {
+  const url = 'https://www.example.com:443/path';
+  t.is(getHostname(url), 'www.example.com');
+});
+
 test('Hostname with http: protocol', (t) => {
   const url = 'http://www.example.com/path';
+  t.is(getHostname(url), 'www.example.com');
+});
+
+test('Hostname with http: protocol & port', (t) => {
+  const url = 'http://www.example.com:8080/path';
   t.is(getHostname(url), 'www.example.com');
 });
 
@@ -48,6 +58,12 @@ test('Hostname with ftp: protocol, exclude ftp protocol', (t) => {
   t.is(getHostname(url, excludedProtocol), false);
 });
 
+test('Hostname with ftp: protocol, exclude ftp & gopher protocol', (t) => {
+  const url = 'ftp://www.example.com/path';
+  const excludedProtocol = ['ftp', 'gopher'];
+  t.is(getHostname(url, excludedProtocol), false);
+});
+
 test('Hostname with mailto: protocol', (t) => {
   const url = 'mailto:mail@expample.com';
   t.is(getHostname(url), false);
@@ -55,6 +71,16 @@ test('Hostname with mailto: protocol', (t) => {
 
 test('Hostname with tel: protocol', (t) => {
   const url = 'tel:+1234567890';
+  t.is(getHostname(url), false);
+});
+
+test('Hostname with file: protocol', (t) => {
+  const url = 'file:/some/file.ext';
+  t.is(getHostname(url), false);
+});
+
+test('Hostname with javascript: protocol', (t) => {
+  const url = 'javascript:alert(0)';
   t.is(getHostname(url), false);
 });
 
