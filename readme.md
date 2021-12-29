@@ -1,6 +1,10 @@
 # eleventy-plugin-external-links
 
 [![NPM version](https://img.shields.io/npm/v/@aloskutov/eleventy-plugin-external-links.svg?style=flat)](https://www.npmjs.com/package/@aloskutov/eleventy-plugin-external-links)
+![npms.io (quality)](https://img.shields.io/npms-io/maintenance-score/@aloskutov/eleventy-plugin-external-links)
+![npms.io (quality)](https://img.shields.io/npms-io/quality-score/@aloskutov/eleventy-plugin-external-links)
+[![codecov](https://codecov.io/gh/aloskutov/eleventy-plugin-external-links/branch/main/graph/badge.svg?token=TVZ408V72G)](https://codecov.io/gh/aloskutov/eleventy-plugin-external-links)
+![GitHub](https://img.shields.io/github/license/aloskutov/eleventy-plugin-external-links)
 
 Transform external links from `<a href='http://external-link'>` to `<a href='http://external-link'  rel='noreferrer nofollow noopener external' target='_blank'>`.
 
