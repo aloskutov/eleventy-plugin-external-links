@@ -28,6 +28,8 @@ function getHostname(url, excludedProtocols = []) {
   }
 
   const allowedProtocols = ['http', 'https', 'ftp', `ftps`, undefined].filter((element) => !excludedProtocols.includes(element));
+  let [, protocol, hostname] = parseURL(url);
+
   }
   return hostname;
 }
