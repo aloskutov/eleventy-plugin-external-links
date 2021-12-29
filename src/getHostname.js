@@ -33,6 +33,13 @@ function getHostname(url, excludedProtocols = []) {
   if (protocol) {
     protocol = protocol.slice(0, -1);
   }
+
+  if (!allowedProtocols.includes(protocol)) {
+    hostname = false;
+  } else {
+    hostname = [undefined, '..', '.'].includes(hostname) ? false : hostname;
+  }
+
   return hostname;
 }
 
