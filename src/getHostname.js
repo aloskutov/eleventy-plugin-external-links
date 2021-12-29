@@ -19,10 +19,13 @@ function parseURL(url = '') {
  */
 function getHostname(url, excludedProtocols = []) {
   url = (url !== null && url !== undefined) ? url.toLowerCase() : '';
-  excludedProtocols = excludedProtocols.concat(['tel', 'mailto']);
-  const notHostname = ['', null, '..', '.'];
-  const [protocol] = url.includes(':') ? url.split(':') : 'none';
-  let hostname = false;
+  if (Array.isArray(excludedProtocols)) {
+    excludedProtocols = excludedProtocols
+        .map((element) => element.toLowerCase());
+  }
+  if (typeof excludedProtocols === 'string') {
+    excludedProtocols = excludedProtocols.toLowerCase();
+  }
 
   if (!excludedProtocols.includes(protocol)) {
     const regex = new RegExp('^(?:\\w*.?\\/\\/)?([^\\/#\\?]*)\\/?', 'g');
