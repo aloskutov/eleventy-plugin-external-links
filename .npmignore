@@ -9,4 +9,5 @@ index.md
 .editorconfig
 .eleventyignore
 .nycrc
+codecov.yml
 package-lock.json
