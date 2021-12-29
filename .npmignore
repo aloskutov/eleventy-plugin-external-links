@@ -3,6 +3,7 @@ _includes
 _site
 test
 coverage
+.github
 index.md
 .eslintrc.json
 .editorconfig
