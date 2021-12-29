@@ -27,10 +27,7 @@ function getHostname(url, excludedProtocols = []) {
     excludedProtocols = excludedProtocols.toLowerCase();
   }
 
-  if (!excludedProtocols.includes(protocol)) {
-    const regex = new RegExp('^(?:\\w*.?\\/\\/)?([^\\/#\\?]*)\\/?', 'g');
-    hostname = regex.exec(url)[1];
-    hostname = notHostname.includes(hostname) ? false : hostname;
+  const allowedProtocols = ['http', 'https', 'ftp', `ftps`, undefined].filter((element) => !excludedProtocols.includes(element));
   }
   return hostname;
 }
