@@ -1,5 +1,7 @@
 # eleventy-plugin-external-links
 
+[![NPM version](https://img.shields.io/npm/v/markdown-it.svg?style=flat)](https://www.npmjs.com/package/@aloskutov/eleventy-plugin-external-links)
+
 Transform external links from `<a href='http://external-link'>` to `<a href='http://external-link'  rel='noreferrer nofollow noopener external' target='_blank'>`.
 
 ## Usage
