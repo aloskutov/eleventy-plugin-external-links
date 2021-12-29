@@ -53,7 +53,9 @@ module.exports = (eleventyConfig) => {
 
 The site address can be specified without a protocol, only the fully qualified domain name. For example, `www.example.com` or `https://www.example.com` or `//www.example.com`
 
-Addresses with `mailto:` and `tel:` protocols are excluded from processing, and remain unchanged.
+Addresses with protocols other than `http`, `https`, `ftp` and `ftps` are excluded from processing and remain unchanged.
+
+**Doesn't support IDN (Internationalized Domain Names)!**
 
 ## Examples
 
@@ -77,7 +79,9 @@ Local links:
 * `/?link-with-query-string`
 * `#link-with-id`
 * `https://www.example.com/some-link`
+* `https://www.example.com:443/some-link`
 * `http://www.example.com/some-link`
+* `http://www.example.com:8080/some-link`
 * `ftp://www.example.com/some-link`
 * `//www.example.com/some-link`
 * `www.example.com/some-link`
@@ -86,7 +90,9 @@ Local links:
 External links
 
 * `http://www.google.com`
+* `http://www.google.com:80`
 * `https://www.google.com`
+* `https://www.google.com:443`
 * `ftp://www.google.com`
 * `protocol://www.google.com`
 * `//www.google.com`
@@ -96,6 +102,12 @@ The following links are not processed
 
 * `mailto:some@address.com`
 * `tel:1234567890`
+* `file:/some/file`
+* `javascript:alert(0)`
+* `telnet://192.0.2.16:80/`
+* `urn:oid:1.2.840.113549.1.1.1`
+* `sip:911@pbx.mycompany.com`
+* `news:comp.infosystems.www.servers.unix`
 
 ## TODO
 

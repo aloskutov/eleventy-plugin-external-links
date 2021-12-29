@@ -54,13 +54,13 @@ test('Hostname with ftp: protocol', (t) => {
 
 test('Hostname with ftp: protocol, exclude ftp protocol', (t) => {
   const url = 'ftp://www.example.com/path';
-  const excludedProtocol = 'ftp';
+  const excludedProtocol = 'Ftp';
   t.is(getHostname(url, excludedProtocol), false);
 });
 
 test('Hostname with ftp: protocol, exclude ftp & gopher protocol', (t) => {
   const url = 'ftp://www.example.com/path';
-  const excludedProtocol = ['ftp', 'gopher'];
+  const excludedProtocol = ['Ftp', 'gopher'];
   t.is(getHostname(url, excludedProtocol), false);
 });
 
