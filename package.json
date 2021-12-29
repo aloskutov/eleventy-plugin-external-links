@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "npx ava",
-    "coverage": " npx c8 --100 npm test",
+    "coverage": "npx c8 --100 npm test",
     "lint": "npx eslint ./src"
   },
   "main": ".eleventy.js",
