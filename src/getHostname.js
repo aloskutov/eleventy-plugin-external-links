@@ -1,6 +1,17 @@
 'use strict';
 
 /**
+ * Parse URL
+ * @param {string} url href link
+ * @return {array} result
+ * result indexes: [protocol, hostname, port, pathname, query string or id]
+ */
+function parseURL(url = '') {
+  const regex = new RegExp('^(\\w*\\:)?(?:\\/\\/)?([a-zA-Z0-9\\.]+)?(?::)?(\\d+)?(\\/?[\\w\\.]*\\/?)*(\\S*)', 'g');
+  return regex.exec(url);
+}
+
+/**
  * Get hostname from url or link
  * @param {string} url link or url string
  * @param {string|array} excludedProtocols protocol(s) without colon
