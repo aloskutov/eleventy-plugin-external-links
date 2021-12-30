@@ -8,10 +8,13 @@
         "google"
     ],
     "parserOptions": {
-        "ecmaVersion": 6
+        "ecmaVersion": 2018
     },
     "rules": {
-      "max-len": ["error", { "ignoreStrings": true }],
+      "max-len": ["error", {
+        "ignoreStrings": true,
+        "ignorePattern": true
+        }],
       "strict": "warn"
     }
 }
