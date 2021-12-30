@@ -6,9 +6,27 @@
  * @return {array} result
  * result indexes: [protocol, hostname, port, pathname, query string or id]
  */
-function parseURL(url = '') {
-  const regex = new RegExp('^(\\w*\\:)?(?:\\/\\/)?([a-zA-Z0-9\\.]+)?(?::)?(\\d+)?(\\/?[\\w\\.]*\\/?)*(\\S*)', 'g');
-  return regex.exec(url);
+function parseURL(url) {
+  const checkedUrl = (url !== null) ? url.toLowerCase() : '';
+  const regex = /^(?<protocol>\w*(?:\:))?(?:\/\/)?(?<hostname>[a-zA-Z0-9\.]+)?(?::)?(?<port>\d+)?(?<path>\/?[\w\.]*\/?)*(?<query>\S*)/g;
+  return regex.exec(checkedUrl);
+}
+
+/**
+ * Get allowed protocols
+ * @param {array|string} excludedProtocols
+ * @return {array} allowed protocols
+ */
+function getAllowedProtocols(excludedProtocols) {
+  let exclProto = excludedProtocols;
+  if (Array.isArray(exclProto )) {
+    exclProto  = exclProto
+        .map((element) => element.toLowerCase());
+  }
+  if (typeof exclProto  === 'string') {
+    exclProto  = exclProto .toLowerCase();
+  }
+  return ['http', 'https', 'ftp', `ftps`, null].filter((element) => !exclProto .includes(element));
 }
 
 /**
@@ -17,27 +35,19 @@ function parseURL(url = '') {
  * @param {string|array} excludedProtocols protocol(s) without colon
  * @return {string|boolean} hostname or false
  */
-function getHostname(url, excludedProtocols = []) {
-  url = (url !== null && url !== undefined) ? url.toLowerCase() : '';
-  if (Array.isArray(excludedProtocols)) {
-    excludedProtocols = excludedProtocols
-        .map((element) => element.toLowerCase());
-  }
-  if (typeof excludedProtocols === 'string') {
-    excludedProtocols = excludedProtocols.toLowerCase();
-  }
+function getHostname(url = '', excludedProtocols = []) {
+  const parsed = parseURL(url);
+  let protocol = parsed.groups.protocol ? parsed.groups.protocol : null;
+  let hostname = parsed.groups.hostname ? parsed.groups.hostname : null;
 
-  const allowedProtocols = ['http', 'https', 'ftp', `ftps`, undefined].filter((element) => !excludedProtocols.includes(element));
-  let [, protocol, hostname] = parseURL(url);
-
-  if (protocol) {
+  if (protocol && protocol !== null) {
     protocol = protocol.slice(0, -1);
   }
 
-  if (!allowedProtocols.includes(protocol)) {
-    hostname = false;
+  if (getAllowedProtocols(excludedProtocols).includes(protocol)) {
+    hostname = [null, '..', '.'].includes(hostname) ? false : hostname;
   } else {
-    hostname = [undefined, '..', '.'].includes(hostname) ? false : hostname;
+    hostname = false;
   }
 
   return hostname;
