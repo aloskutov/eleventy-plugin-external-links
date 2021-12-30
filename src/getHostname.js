@@ -9,7 +9,9 @@
 function parseURL(url) {
   const checkedUrl = (url !== null) ? url.toLowerCase() : '';
   const regex = /^(?<protocol>\w*(?::))?(?:\/\/)?(?<hostname>[a-zA-Z0-9.]+)?(?::)?(?<port>\d+)?(?<path>\/?[\w.]*\/?)*(?<query>\S*)/;
-  return regex.exec(checkedUrl);
+  const matches = regex.exec(checkedUrl);
+
+  return matches;
 }
 
 /**
@@ -37,7 +39,7 @@ function getAllowedProtocols(excludedProtocols) {
  */
 function getHostname(url = '', excludedProtocols = []) {
   const parsed = parseURL(url);
-  let protocol = parsed.groups.protocol ? parsed.groups.protocol.slice(0, -1) : null;
+  const protocol = parsed.groups.protocol ? parsed.groups.protocol.slice(0, -1) : null;
   let hostname = parsed.groups.hostname ? parsed.groups.hostname : null;
 
   if (getAllowedProtocols(excludedProtocols).includes(protocol)) {
