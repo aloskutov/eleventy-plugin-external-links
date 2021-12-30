@@ -37,12 +37,8 @@ function getAllowedProtocols(excludedProtocols) {
  */
 function getHostname(url = '', excludedProtocols = []) {
   const parsed = parseURL(url);
-  let protocol = parsed.groups.protocol ? parsed.groups.protocol : null;
+  let protocol = parsed.groups.protocol ? parsed.groups.protocol.slice(0, -1) : null;
   let hostname = parsed.groups.hostname ? parsed.groups.hostname : null;
-
-  if (protocol && protocol !== null) {
-    protocol = protocol.slice(0, -1);
-  }
 
   if (getAllowedProtocols(excludedProtocols).includes(protocol)) {
     hostname = [null, '..', '.'].includes(hostname) ? false : hostname;
