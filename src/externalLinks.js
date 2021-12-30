@@ -25,7 +25,7 @@ module.exports = function(content, outputPath, globalOptions = {}) {
 
   const urlHostname = getHostname(options.url);
   const dom = new JSDOM(content);
-  const document = dom.window.document;
+  const document = Object.assign(dom.window.document);
   const [...links] = document.querySelectorAll(options.selector);
 
   links.forEach((link) => {
