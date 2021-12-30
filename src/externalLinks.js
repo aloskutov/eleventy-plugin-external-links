@@ -45,5 +45,5 @@ module.exports = function(content, outputPath, globalOptions = {}) {
       }
     }
   });
-  return '<!doctype html>' + document.documentElement.outerHTML;
+  return `<!doctype html>${document.documentElement.outerHTML}`;
 };

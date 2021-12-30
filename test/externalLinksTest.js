@@ -12,7 +12,7 @@ test('outputPath is undefined', (t) => {
 test('outputPath is html', (t) => {
   const outputPath = 'test.html';
   const content = '<html><head><title>test</title></head><body><h1>Test</h1></body></html>';
-  t.is(externalLinks(content, outputPath), '<!doctype html>' + content);
+  t.is(externalLinks(content, outputPath), `<!doctype html>${content}`);
 });
 
 test('outputPath is js', (t) => {
