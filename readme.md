@@ -5,6 +5,7 @@
 ![npms.io (quality)](https://img.shields.io/npms-io/quality-score/@aloskutov/eleventy-plugin-external-links)
 [![codecov](https://codecov.io/gh/aloskutov/eleventy-plugin-external-links/branch/main/graph/badge.svg?token=TVZ408V72G)](https://codecov.io/gh/aloskutov/eleventy-plugin-external-links)
 ![GitHub](https://img.shields.io/github/license/aloskutov/eleventy-plugin-external-links)
+[![DeepScan grade](https://deepscan.io/api/teams/16410/projects/19674/branches/514387/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=16410&pid=19674&bid=514387)
 
 Transform external links from `<a href='http://external-link'>` to `<a href='http://external-link'  rel='noreferrer nofollow noopener external' target='_blank'>`.
 
