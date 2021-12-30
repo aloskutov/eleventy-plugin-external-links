@@ -7,6 +7,9 @@
 ![GitHub](https://img.shields.io/github/license/aloskutov/eleventy-plugin-external-links)
 [![DeepScan grade](https://deepscan.io/api/teams/16410/projects/19674/branches/514387/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=16410&pid=19674&bid=514387)
 
+[![DeepSource](https://deepsource.io/gh/aloskutov/eleventy-plugin-external-links.svg/?label=active+issues&show_trend=true&token=9-CKuKOMvMKrFroeDQ7YK2el)](https://deepsource.io/gh/aloskutov/eleventy-plugin-external-links/?ref=repository-badge)
+[![DeepSource](https://deepsource.io/gh/aloskutov/eleventy-plugin-external-links.svg/?label=resolved+issues&show_trend=true&token=9-CKuKOMvMKrFroeDQ7YK2el)](https://deepsource.io/gh/aloskutov/eleventy-plugin-external-links/?ref=repository-badge)
+
 Transform external links from `<a href='http://external-link'>` to `<a href='http://external-link'  rel='noreferrer nofollow noopener external' target='_blank'>`.
 
 ## Usage
