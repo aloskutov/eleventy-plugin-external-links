@@ -4,9 +4,8 @@ const test = require('ava');
 const externalLinks = require('../src/externalLinks.js');
 
 test('outputPath is undefined', (t) => {
-  const outputPath = undefined;
   const content = 'some data';
-  t.is(externalLinks(content, outputPath), content);
+  t.is(externalLinks(content), content);
 });
 
 test('outputPath is html', (t) => {

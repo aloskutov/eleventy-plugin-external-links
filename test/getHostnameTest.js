@@ -14,7 +14,7 @@ test('Hostname with null', (t) => {
 });
 
 test('Hostname with undefined', (t) => {
-  t.is(getHostname(undefined), false);
+  t.is(getHostname(), false);
 });
 
 test('Hostname is IP address', (t) => {
@@ -76,11 +76,6 @@ test('Hostname with tel: protocol', (t) => {
 
 test('Hostname with file: protocol', (t) => {
   const url = 'file:/some/file.ext';
-  t.is(getHostname(url), false);
-});
-
-test('Hostname with javascript: protocol', (t) => {
-  const url = 'javascript:alert(0)';
   t.is(getHostname(url), false);
 });
 
