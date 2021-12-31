@@ -89,6 +89,11 @@ test('Hostname without protocol 2', (t) => {
   t.is(getHostname(url), 'www.example.com');
 });
 
+test('Hostname without protocol and with hyphens', (t) => {
+  const url = 'w-w-w.e-x-a-m-p-l-e.com/path';
+  t.is(getHostname(url), 'w-w-w.e-x-a-m-p-l-e.com');
+});
+
 test('Link without hostname', (t) => {
   const url = '/path';
   t.is(getHostname(url), false);
