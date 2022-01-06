@@ -1,13 +1,12 @@
-_site
-_includes
-_site
 test
 coverage
 .github
-index.md
 .eslintrc.json
 .editorconfig
 .eleventyignore
-.nycrc
+.deepsource.toml
+.gitignore
+jest.config.js
+CODE_OF_CONDUCT.md
 codecov.yml
 package-lock.json
