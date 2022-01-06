@@ -10,10 +10,12 @@
     "parserOptions": {
         "ecmaVersion": 2018
     },
+    "ignorePatterns": ["*.config.js"],
     "rules": {
       "max-len": ["error", {
         "ignoreStrings": true,
-        "ignorePattern": true
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
         }],
       "strict": "warn"
     }
