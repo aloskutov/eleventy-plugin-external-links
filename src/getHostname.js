@@ -20,15 +20,11 @@ function parseURL(url) {
  * @return {array} allowed protocols
  */
 function getAllowedProtocols(excludedProtocols) {
-  let exclProto = excludedProtocols;
-  if (Array.isArray(exclProto )) {
-    exclProto  = exclProto
-        .map((element) => element.toLowerCase());
-  }
-  if (typeof exclProto  === 'string') {
-    exclProto  = exclProto .toLowerCase();
-  }
-  return ['http', 'https', 'ftp', `ftps`, null].filter((element) => !exclProto .includes(element));
+  const exclProto = Array.isArray(excludedProtocols) ?
+    excludedProtocols.map((element) => element.toLowerCase()) :
+    excludedProtocols.toLowerCase();
+
+  return ['http', 'https', 'ftp', `ftps`, null].filter((element) => !exclProto.includes(element));
 }
 
 /**
@@ -39,7 +35,9 @@ function getAllowedProtocols(excludedProtocols) {
  */
 function getHostname(url = '', excludedProtocols = []) {
   const parsed = parseURL(url);
-  const protocol = parsed.groups.protocol ? parsed.groups.protocol.slice(0, -1) : null;
+  const protocol = parsed.groups.protocol ?
+    parsed.groups.protocol.slice(0, -1) :
+    null;
   let hostname = parsed.groups.hostname ? parsed.groups.hostname : null;
 
   if (getAllowedProtocols(excludedProtocols).includes(protocol)) {
@@ -47,7 +45,6 @@ function getHostname(url = '', excludedProtocols = []) {
   } else {
     hostname = false;
   }
-
   return hostname;
 }
 
