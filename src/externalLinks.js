@@ -21,6 +21,8 @@ module.exports = function(content, outputPath, globalOptions = {}) {
     target: '_blank',
     overwrite: true,
     excludedProtocols: [],
+    doctype: '<!doctype html>',
+    addDoctype: true,
   }, globalOptions);
 
   const urlHostname = getHostname(options.url);
@@ -29,8 +31,7 @@ module.exports = function(content, outputPath, globalOptions = {}) {
   const [...links] = document.querySelectorAll(options.selector);
 
   links.forEach((link) => {
-    const linkHref = link.getAttribute('href');
-    const linkHostname = getHostname(linkHref, options.excludedProtocols);
+    const linkHostname = getHostname(link.getAttribute('href'), options.excludedProtocols);
     const linkRel = link.getAttribute('rel');
     const linkTarget = link.getAttribute('target');
     const rel = Array.isArray(options.rel) ? options.rel.join(' ') : options.rel;
@@ -45,5 +46,11 @@ module.exports = function(content, outputPath, globalOptions = {}) {
       }
     }
   });
-  return `<!doctype html>${document.documentElement.outerHTML}`;
+
+  let result = `${options.doctype}${document.documentElement.outerHTML}`;
+
+  if (!options.addDoctype) {
+    result = `${document.documentElement.outerHTML}`;
+  }
+  return result;
 };

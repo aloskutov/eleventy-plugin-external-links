@@ -105,12 +105,54 @@ test('External links overwrite:false', () => {
     overwrite: false,
     rel: 'noreferrer',
   };
-  const content = `<!doctype html><html><head>
+  const content = `<html><head>
   </head>
   <body>
   <a href="www.google.com">Google</a>
   </body></html>`;
   const result = `<!doctype html><html><head>
+  </head>
+  <body>
+  <a href="www.google.com" rel="noreferrer" target="_blank">Google</a>
+  </body></html>`;
+  expect(externalLinks(content, outputPath, config)).toBe(result);
+});
+
+test('External links overwrite:false addDoctype: false', () => {
+  const outputPath = 'test.html';
+  const config = {
+    overwrite: false,
+    rel: 'noreferrer',
+    addDoctype: false,
+  };
+  const content = `<html><head>
+  </head>
+  <body>
+  <a href="www.google.com">Google</a>
+  </body></html>`;
+  const result = `<html><head>
+  </head>
+  <body>
+  <a href="www.google.com" rel="noreferrer" target="_blank">Google</a>
+  </body></html>`;
+  expect(externalLinks(content, outputPath, config)).toBe(result);
+});
+
+test('External links overwrite:false doctype: html 4 strict', () => {
+  const outputPath = 'test.html';
+  const config = {
+    overwrite: false,
+    rel: 'noreferrer',
+    doctype: `< !DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd" >`,
+  };
+  const content = `<html><head>
+  </head>
+  <body>
+  <a href="www.google.com">Google</a>
+  </body></html>`;
+  const result = `< !DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd" ><html><head>
   </head>
   <body>
   <a href="www.google.com" rel="noreferrer" target="_blank">Google</a>

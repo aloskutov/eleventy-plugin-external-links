@@ -39,6 +39,7 @@ module.exports = (eleventyConfig) => {
 | target | string | _blank | link target attribute |
 | overwrite | boolean | true | Overwrite attribute values or not. If the value is false, then the existing attribute is not overwritten. |
 | excludedProtocols | array | [] | Exclude links with matching protocols from processing. The protocol must be specified without a colon. Ex. `['ftp']`|
+| doctype | string | '<!doctype html>' |  |
 
 ### Default options
 
@@ -49,7 +50,9 @@ module.exports = (eleventyConfig) => {
     rel: ['noreferrer', 'nofollow', 'noopener', 'external'],
     target: '_blank',
     overwrite: true,
-    excludedProtocols: []
+    excludedProtocols: [],
+    doctype: '<!doctype html>',
+    addDoctype: true,
 }
 ```
 
@@ -116,6 +119,6 @@ The following links are not processed
 ## TODO
 
 * [ ] add `excludedUrls`. _List of addresses that will be excluded from processing. These links will not be considered external and will remain unchanged._
-* [ ] add `addDoctype`. _Optional doctype_ `<!doctype html>`
-* [ ] add `doctype`. _Doctype string. Default:_ `<!doctype html>`
+* [x] add `addDoctype`. _Optional doctype_ `<!doctype html>`
+* [x] add `doctype`. _Doctype string. Default:_ `<!doctype html>`
 * [ ] add `ext`. _List of processed files, not only `.html` files. Default:_ `.html`
