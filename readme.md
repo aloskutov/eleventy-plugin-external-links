@@ -39,7 +39,8 @@ module.exports = (eleventyConfig) => {
 | target | string | _blank | link target attribute |
 | overwrite | boolean | true | Overwrite attribute values or not. If the value is false, then the existing attribute is not overwritten. |
 | excludedProtocols | array | [] | Exclude links with matching protocols from processing. The protocol must be specified without a colon. Ex. `['ftp']`|
-| doctype | string | '<!doctype html>' |  |
+| doctype | string | '<!doctype html>' | Doctype value |
+| addDoctype | boolean | true | Add doctype to result or not |
 
 ### Default options
 
