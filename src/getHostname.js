@@ -9,9 +9,8 @@
 function parseURL(url) {
   const checkedUrl = (url !== null) ? url.toLowerCase() : '';
   const regex = /^(?<protocol>\w*(?::))?(?:\/\/)?(?<hostname>[a-zA-Z0-9.-]+)?(?::)?(?<port>\d+)?(?<path>\/?[\w.]*\/?)*(?<query>\S*)/;
-  const matches = regex.exec(checkedUrl);
 
-  return matches;
+  return regex.exec(checkedUrl);
 }
 
 /**
