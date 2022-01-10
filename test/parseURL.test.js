@@ -23,7 +23,7 @@ describe('Get protocols', () => {
   expect(parseURL('http://www.example.com/path').groups.protocol).toBe('http:');
   expect(parseURL('https://ru.wikipedia.org/wiki/URI').groups.protocol).toBe('https:');
   expect(parseURL('ftp://ftp.is.co.za/rfc/rfc1808.txt').groups.protocol).toBe('ftp:');
-  expect(parseURL(`file://C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml`).groups.protocol).toBe('file:');
+  expect(parseURL('file://C:\\UserName.HostName\\Projects\\Wikipedia_Articles\\URI.xml').groups.protocol).toBe('file:');
   expect(parseURL('ldap://[2001:db8::7]/c=GB?objectClass?one').groups.protocol).toBe('ldap:');
   expect(parseURL('mailto:John.Doe@example.com').groups.protocol).toBe('mailto:');
   expect(parseURL('sip:911@pbx.mycompany.com').groups.protocol).toBe('sip:');
