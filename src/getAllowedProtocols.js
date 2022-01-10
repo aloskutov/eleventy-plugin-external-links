@@ -8,7 +8,7 @@
 const getAllowedProtocols = (excludedProtocols) => {
   const exclProto = Array.isArray(excludedProtocols) ?
     excludedProtocols.map((element) =>
-      element ? element.toLowerCase() : element) :
+      (element ? element.toLowerCase() : element)) :
       excludedProtocols ?
         [excludedProtocols.toLowerCase()] :
         [excludedProtocols];
