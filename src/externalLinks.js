@@ -47,10 +47,7 @@ module.exports = function(content, outputPath, globalOptions = {}) {
     }
   });
 
-  let result = `${options.doctype}${document.documentElement.outerHTML}`;
+  const result = options.addDoctype ? `${options.doctype}${document.documentElement.outerHTML}` : `${document.documentElement.outerHTML}`;
 
-  if (!options.addDoctype) {
-    result = `${document.documentElement.outerHTML}`;
-  }
   return result;
 };
