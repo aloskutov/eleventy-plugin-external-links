@@ -24,6 +24,5 @@ test('Hostname with excluded protocols', () => {
   expect(getHostname('tel:+1-816-555-1212')).toBeFalsy();
   expect(getHostname('sip:911@pbx.mycompany.com')).toBeFalsy();
   expect(getHostname('telnet://192.0.2.16:80/')).toBeFalsy();
-  expect(getHostname('javascript:alert()')).toBeFalsy();
   expect(getHostname('myphotoapp:albumname?index=1')).toBeFalsy();
 });

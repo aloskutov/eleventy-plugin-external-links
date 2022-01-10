@@ -29,7 +29,6 @@ describe('Get protocols', () => {
   expect(parseURL('sip:911@pbx.mycompany.com').groups.protocol).toBe('sip:');
   expect(parseURL('telnet://192.0.2.16:80/').groups.protocol).toBe('telnet:');
   expect(parseURL('urn:oasis:names:specification:docbook:dtd:xml:4.1.2').groups.protocol).toBe('urn:');
-  expect(parseURL('javascript:alert()').groups.protocol).toBe('javascript:');
   expect(parseURL('//www.example.com/path').groups.protocol).toBeUndefined();
   expect(parseURL('www.example.com/path').groups.protocol).toBeUndefined();
   expect(parseURL('/path').groups.protocol).toBeUndefined();
