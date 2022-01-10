@@ -1,31 +1,7 @@
 'use strict';
 
-/**
- * Parse URL
- * @param {string} url href link
- * @return {array} result
- * result indexes: [protocol, hostname, port, pathname, query string or id]
- */
-function parseURL(url) {
-  const checkedUrl = (url !== null) ? url.toLowerCase() : '';
-  const regex = /^(?<protocol>\w*(?::))?(?:\/\/)?(?<hostname>[a-zA-Z0-9.-]+)?(?::)?(?<port>\d+)?(?<path>\/?[\w.]*\/?)*(?<query>\S*)/;
-  const matches = regex.exec(checkedUrl);
-
-  return matches;
-}
-
-/**
- * Get allowed protocols
- * @param {array|string} excludedProtocols
- * @return {array} allowed protocols
- */
-function getAllowedProtocols(excludedProtocols) {
-  const exclProto = Array.isArray(excludedProtocols) ?
-    excludedProtocols.map((element) => element.toLowerCase()) :
-    excludedProtocols.toLowerCase();
-
-  return ['http', 'https', 'ftp', `ftps`, null].filter((element) => !exclProto.includes(element));
-}
+const parseURL = require('./parseURL');
+const getAllowedProtocols = require('./getAllowedProtocols');
 
 /**
  * Get hostname from url or link
