@@ -17,7 +17,7 @@ Transform external links from `<a href='http://external-link'>` to `<a href='htt
 ### Install via npm
 
 ```shell
-npm install --save-dev @aloskutov/eleventy-plugin-external-links
+npm install @aloskutov/eleventy-plugin-external-links
 ```
 
 ### Load plugin in `.eleventy.js`
