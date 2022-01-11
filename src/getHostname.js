@@ -14,10 +14,10 @@ function getHostname(url = '', excludedProtocols = []) {
   const protocol = parsed.groups.protocol ?
     parsed.groups.protocol.slice(0, -1) :
     null;
-  let hostname = parsed.groups.hostname ? parsed.groups.hostname : null;
+  let hostname = parsed.groups.hostname ? parsed.groups.hostname : false;
 
   hostname = getAllowedProtocols(excludedProtocols).includes(protocol) ?
-    hostname = hostname ? hostname : false :
+    hostname :
     false;
 
   return hostname;
