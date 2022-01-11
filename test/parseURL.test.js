@@ -2,24 +2,7 @@
 
 const parseURL = require('../src/parseURL');
 
-describe('Parse link', () => {
-  it('Parse links with port', () => {
-    expect(parseURL('https://www.domain-name.com:443/some/path').groups.hostname).toBe('www.domain-name.com');
-    expect(parseURL('https://www.domain-name.com:443/some/path').groups.protocol).toBe('https:');
-    expect(parseURL('https://www.domain-name.com:443/some/path').groups.port).toBe('443');
-    expect(parseURL('https://www.domain-name.com:443/some/path').groups.path).toBe('/some/path');
-    expect(parseURL('https://www.domain-name.com:443/some/path').groups.query).toBe('');
-  });
-  it('Parse links with long domain name', () => {
-    expect(parseURL('https://www.sub.domain.domain-name.com/some/path').groups.hostname).toBe('www.sub.domain.domain-name.com');
-    expect(parseURL('https://www.sub.domain.domain-name.com/some/path').groups.protocol).toBe('https:');
-    expect(parseURL('https://www.sub.domain.domain-name.com/some/path').groups.port).toBeUndefined();
-    expect(parseURL('https://www.sub.domain.domain-name.com/some/path').groups.path).toBe('/some/path');
-    expect(parseURL('https://www.sub.domain.domain-name.com/some/path').groups.query).toBe('');
-  });
-});
-
-describe('Get protocols', () => {
+test('Get protocols', () => {
   expect(parseURL('http://www.example.com/path').groups.protocol).toBe('http:');
   expect(parseURL('https://ru.wikipedia.org/wiki/URI').groups.protocol).toBe('https:');
   expect(parseURL('ftp://ftp.is.co.za/rfc/rfc1808.txt').groups.protocol).toBe('ftp:');
@@ -36,21 +19,21 @@ describe('Get protocols', () => {
   expect(parseURL('../index.php#id').groups.protocol).toBeUndefined();
 });
 
-describe('Get hostname', () => {
+test('Get hostname', () => {
   expect(parseURL('').groups.hostname).toBeUndefined();
   expect(parseURL().groups.hostname).toBeUndefined();
   expect(parseURL(null).groups.hostname).toBeUndefined();
   expect(parseURL('http://www.example.com/path').groups.hostname).toBe('www.example.com');
   expect(parseURL('http://example.com/path').groups.hostname).toBe('example.com');
   expect(parseURL('https://www.e-x-a-m-p-l-e.com/path').groups.hostname).toBe('www.e-x-a-m-p-l-e.com');
-  expect(parseURL('https://192.168.0.1/path').groups.hostname).toBe('192.168.0.1');
+  expect(parseURL('https://192.168.0.1:8080/path').groups.hostname).toBe('192.168.0.1');
   expect(parseURL('ftp://www.example.com/path').groups.hostname).toBe('www.example.com');
   expect(parseURL('//www.example.com/path').groups.hostname).toBe('www.example.com');
   expect(parseURL('www.example.com/path').groups.hostname).toBe('www.example.com');
   expect(parseURL('example.com').groups.hostname).toBe('example.com');
   expect(parseURL('/index.html').groups.hostname).toBeUndefined();
-  expect(parseURL('../index.html').groups.hostname).toBe('..');
-  expect(parseURL('./index.html').groups.hostname).toBe('.');
+  expect(parseURL('../index.html').groups.hostname).toBeUndefined();
+  expect(parseURL('./index.html').groups.hostname).toBeUndefined();
   expect(parseURL('#index').groups.hostname).toBeUndefined();
   expect(parseURL('?query=index').groups.hostname).toBeUndefined();
 });
