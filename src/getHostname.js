@@ -16,11 +16,10 @@ function getHostname(url = '', excludedProtocols = []) {
     null;
   let hostname = parsed.groups.hostname ? parsed.groups.hostname : null;
 
-  if (getAllowedProtocols(excludedProtocols).includes(protocol)) {
-    hostname = [null, '..', '.'].includes(hostname) ? false : hostname;
-  } else {
-    hostname = false;
-  }
+  hostname = getAllowedProtocols(excludedProtocols).includes(protocol) ?
+    hostname = hostname ? hostname : false :
+    false;
+
   return hostname;
 }
 
