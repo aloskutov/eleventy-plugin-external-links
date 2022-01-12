@@ -1,22 +1,22 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2021": true
-    },
-    "extends": [
-        "google"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 2018
-    },
-    "ignorePatterns": ["*.config.js"],
-    "rules": {
-      "max-len": ["error", {
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true,
-        "ignoreRegExpLiterals": true
-        }],
-      "strict": "warn"
-    }
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": [
+    "google"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "ignorePatterns": ["*.config.js"],
+  "rules": {
+    "max-len": ["error", {
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true
+      }],
+    "strict": "warn"
+  }
 }
