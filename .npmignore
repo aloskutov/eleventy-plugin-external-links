@@ -6,7 +6,7 @@ coverage
 .eleventyignore
 .deepsource.toml
 .gitignore
-.jshint
+.jshintrc
 jest.config.js
 CODE_OF_CONDUCT.md
 codecov.yml
