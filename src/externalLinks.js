@@ -36,7 +36,7 @@ module.exports = function(content, outputPath, globalOptions = {}) {
     const linkTarget = link.getAttribute('target');
     const rel = Array.isArray(options.rel) ? options.rel.join(' ') : options.rel;
 
-    if (linkHostname && linkHostname !== hostname) {
+    if (linkHostname !== hostname) {
       if (options.overwrite) {
         link.setAttribute('rel', rel);
         link.setAttribute('target', options.target);
