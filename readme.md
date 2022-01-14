@@ -41,6 +41,7 @@ module.exports = (eleventyConfig) => {
 | excludedProtocols | array | [] | Exclude links with matching protocols from processing. The protocol must be specified without a colon. Ex. `['ftp']`|
 | doctype | string | '<!doctype html>' | Doctype value |
 | addDoctype | boolean | true | Add doctype to result or not |
+| ext | array | ['.html'] | Extensions |
 
 ### Default options
 
@@ -122,4 +123,4 @@ The following links are not processed
 * [ ] add `excludedUrls`. _List of addresses that will be excluded from processing. These links will not be considered external and will remain unchanged._
 * [x] add `addDoctype`. _Optional doctype_ `<!doctype html>`
 * [x] add `doctype`. _Doctype string. Default:_ `<!doctype html>`
-* [ ] add `ext`. _List of processed files, not only `.html` files. Default:_ `.html`
+* [x] add `ext`. _List of processed files, not only `.html` files. Default:_ `.html`
