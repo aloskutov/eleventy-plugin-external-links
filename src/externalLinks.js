@@ -2,27 +2,22 @@
 
 const {JSDOM} = require('jsdom');
 const getHostname = require('./getHostname');
+const parseOptions = require('./parseOptions');
+const defaultOptions = {
+  url: '',
+  selector: 'a',
+  rel: ['noreferrer', 'nofollow', 'noopener', 'external'],
+  target: '_blank',
+  overwrite: true,
+  excludedProtocols: [],
+  doctype: '<!doctype html>',
+  addDoctype: true,
+  ext: ['.html'],
+  excludedHosts: [],
+};
 
-module.exports = function(content, outputPath, globalOptions = {}) {
-  try {
-    if (!outputPath.endsWith('.html')) {
-      return content;
-    }
-  } catch (e) {
-    if (e instanceof TypeError) {
-      return content;
-    }
-  }
+  const options = parseOptions(defaultOptions, globalOptions);
 
-  const options = Object.assign({
-    url: '',
-    selector: 'a',
-    rel: ['noreferrer', 'nofollow', 'noopener', 'external'],
-    target: '_blank',
-    overwrite: true,
-    excludedProtocols: [],
-    doctype: '<!doctype html>',
-    addDoctype: true,
   }, globalOptions);
 
   const hostname = getHostname(options.url);
