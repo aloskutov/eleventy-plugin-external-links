@@ -42,7 +42,7 @@ module.exports = (eleventyConfig) => {
 | doctype | string | '<!doctype html>' | Doctype value |
 | addDoctype | boolean | true | Add doctype to result or not |
 | ext | array | ['.html'] | Extensions |
-| excludedDomains | array|string | [] | For cross-linked domains and subdomains |
+| excludedDomains | array or string | [] | For cross-linked domains and subdomains |
 
 ### Default options
 
