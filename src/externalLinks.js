@@ -3,6 +3,8 @@
 const {JSDOM} = require('jsdom');
 const getHostname = require('./getHostname');
 const parseOptions = require('./parseOptions');
+const getExcludedHosts = require('./getExcludedHosts');
+const path = require('path');
 const defaultOptions = {
   url: '',
   selector: 'a',
@@ -16,9 +18,12 @@ const defaultOptions = {
   excludedHosts: [],
 };
 
+module.exports = function(content, outputPath, globalOptions = {}) {
+  if (!outputPath) return content;
+
   const options = parseOptions(defaultOptions, globalOptions);
 
-  }, globalOptions);
+  if (!options.ext.includes(path.extname(outputPath))) return content;
 
   const hostname = getHostname(options.url);
   const dom = new JSDOM(content);
