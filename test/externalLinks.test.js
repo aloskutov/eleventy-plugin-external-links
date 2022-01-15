@@ -45,11 +45,12 @@ describe('Local links tests', () => {
 
   test('local links with id', () => {
     const outputPath = 'test.html';
+    const config = {'url': 'https://www.example.com'};
     const content = `<!doctype html><html><head>
     </head><body>
     <p>Lorem ipsum dolor sit <a href="#amet">amet</a>, consectetur adipiscing elit.Sed sed pulvinar nunc. <a href="/another-link/#123">Proin vestibulum eleifend</a> sem eu sodales.  </p>
     </body></html>`;
-    expect(externalLinks(content, outputPath)).toBe(content);
+    expect(externalLinks(content, outputPath, config)).toBe(content);
   });
 
   test('Local links, with domain', () => {
