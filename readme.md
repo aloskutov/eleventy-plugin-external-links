@@ -42,6 +42,7 @@ module.exports = (eleventyConfig) => {
 | doctype | string | '<!doctype html>' | Doctype value |
 | addDoctype | boolean | true | Add doctype to result or not |
 | ext | array | ['.html'] | Extensions |
+| excludedDomains | array|string | [] | For cross-linked domains and subdomains |
 
 ### Default options
 
@@ -120,7 +121,7 @@ The following links are not processed
 
 ## TODO
 
-* [ ] add `excludedUrls`. _List of addresses that will be excluded from processing. These links will not be considered external and will remain unchanged._
+* [x] add `excludedDomains`. _List of addresses that will be excluded from processing. These links will not be considered external and will remain unchanged._
 * [x] add `addDoctype`. _Optional doctype_ `<!doctype html>`
 * [x] add `doctype`. _Doctype string. Default:_ `<!doctype html>`
 * [x] add `ext`. _List of processed files, not only `.html` files. Default:_ `.html`

@@ -15,7 +15,7 @@ const defaultOptions = {
   doctype: '<!doctype html>',
   addDoctype: true,
   ext: ['.html'],
-  excludedHosts: [],
+  excludedDomains: [],
 };
 
 module.exports = function(content, outputPath, globalOptions = {}) {
@@ -26,6 +26,7 @@ module.exports = function(content, outputPath, globalOptions = {}) {
   if (!options.ext.includes(path.extname(outputPath))) return content;
 
   const hostname = getHostname(options.url);
+  const excludedHosts = getExcludedHosts(options.excludedDomains);
   const dom = new JSDOM(content);
   const document = Object.assign(dom.window.document);
   const [...links] = document.querySelectorAll(options.selector);
@@ -36,7 +37,7 @@ module.exports = function(content, outputPath, globalOptions = {}) {
     const linkTarget = link.getAttribute('target');
     const rel = Array.isArray(options.rel) ? options.rel.join(' ') : options.rel;
 
-    if (linkHostname !== hostname) {
+    if (linkHostname !== hostname && !excludedHosts.includes(linkHostname)) {
       if (options.overwrite) {
         link.setAttribute('rel', rel);
         link.setAttribute('target', options.target);

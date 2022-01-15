@@ -65,6 +65,20 @@ describe('Local links tests', () => {
     </body></html>`;
     expect(externalLinks(content, outputPath, config)).toBe(result);
   });
+
+  test('Test excludedDomains', () => {
+    const outputPath = 'test.html';
+    const config = {'url': 'https://www.example.com', 'excludedDomains': ['blog.example.com', 'other.example-host.eu']};
+    const content = `<!doctype html><html><head>
+    </head><body>
+    <p>Lorem ipsum dolor sit <a href="http://www.example.com/local-link">amet</a>, consectetur adipiscing elit. <a href="//blog.example.com/another-local-link.html">Proin   vestibulum eleifend</a> sem eu sodales. <a href="https://www.google.com/without-protocol">Phasellus</a> id est vel eros commodo placerat eu <a href="https://other.example-host.eu/  consectetur">consectetur</a> arcu.</p>
+    </body></html>`;
+    const result = `<!doctype html><html><head>
+    </head><body>
+    <p>Lorem ipsum dolor sit <a href="http://www.example.com/local-link">amet</a>, consectetur adipiscing elit. <a href="//blog.example.com/another-local-link.html">Proin   vestibulum eleifend</a> sem eu sodales. <a href="https://www.google.com/without-protocol" rel="noreferrer nofollow noopener external" target="_blank">Phasellus</a> id est vel eros commodo placerat eu <a href="https://other.example-host.eu/  consectetur">consectetur</a> arcu.</p>
+    </body></html>`;
+    expect(externalLinks(content, outputPath, config)).toBe(result);
+  });
 });
 
 describe('External links tests', () => {
