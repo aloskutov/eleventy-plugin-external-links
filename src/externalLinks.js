@@ -21,6 +21,12 @@ const defaultOptions = {
   excludedDomains: [],
 };
 
+/**
+ * Checks if a file extension matches
+ * @param {string} ext file extension
+ * @param {object} options
+ * @return {boolean}
+ */
 const extensionMatches = (ext, options) => {
   const extensions = Array.isArray(options.ext) ?
     options.ext :
