@@ -23,9 +23,9 @@ const defaultOptions = {
 
 const extensionMatches = (ext, options) => {
   const extensions = Array.isArray(options.ext) ?
-      options.ext :
-      parseString(options.ext);
-  const safeExt = ext ? ext.toLowerCase() : ext;
+    options.ext :
+    parseString(options.ext);
+  const safeExt = ext;
 
   return extensions.includes(safeExt);
 };
