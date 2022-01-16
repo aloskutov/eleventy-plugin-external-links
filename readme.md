@@ -34,7 +34,7 @@ module.exports = (eleventyConfig) => {
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| url | string | `` | If not set, all non-relative links are considered external.|
+| url | string | '' | If not set, all non-relative links are considered external.|
 | rel | array or string | ['noreferrer', 'nofollow', 'noopener', 'external'] | link rel attribute |
 | target | string | _blank | link target attribute |
 | overwrite | boolean | true | Overwrite attribute values or not. If the value is false, then the existing attribute is not overwritten. |
@@ -42,7 +42,7 @@ module.exports = (eleventyConfig) => {
 | doctype | string | '<!doctype html>' | Doctype value |
 | addDoctype | boolean | true | Add doctype to result or not |
 | ext | array | ['.html'] | Extensions |
-| excludedDomains | array or string | [] | For cross-linked domains and subdomains. |
+| excludedDomains | array or string | [] | For cross-linked domains and subdomains. Array or string of values separated by comma, semicolon, tab or space symbols. |
 
 ### Default options
 
