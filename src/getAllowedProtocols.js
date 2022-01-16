@@ -1,5 +1,7 @@
 'use strict';
 
+const allowedProtocols = ['http', 'https', 'ftp', 'ftps', null];
+
 /**
  * Get allowed protocols
  * @param {array|string} excludedProtocols
@@ -13,7 +15,7 @@ const getAllowedProtocols = (excludedProtocols) => {
         [excludedProtocols.toLowerCase()] :
         [excludedProtocols];
 
-  return ['http', 'https', 'ftp', 'ftps', null].filter((element) => !exclProto.includes(element));
+  return allowedProtocols.filter((element) => !exclProto.includes(element));
 };
 
 module.exports = getAllowedProtocols;
