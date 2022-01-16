@@ -55,7 +55,7 @@ describe('Local links tests', () => {
 
   test('Local links, with domain', () => {
     const outputPath = 'test.html';
-    const config = {'url': 'https://www.example.com'};
+    const config = {'url': 'https://www.example.com', 'ext': '.html'};
     const content = `<!doctype html><html><head>
     </head><body>
     <p>Lorem ipsum dolor sit <a href="http://www.example.com/local-link">amet</a>, consectetur adipiscing elit. <a href="//www.example.com/another-local-link.html">Proin   vestibulum eleifend</a> sem eu sodales. <a href="https://www.google.com/without-protocol">Phasellus</a> id est vel eros commodo placerat eu <a href="www.example.com/  consectetur">consectetur</a> arcu.</p>
