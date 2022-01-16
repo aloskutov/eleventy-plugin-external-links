@@ -6,6 +6,7 @@ const path = require('path');
 const parseOptions = require('./parseOptions');
 const getExcludedHosts = require('./getExcludedHosts');
 const getHostname = require('./getHostname');
+const parseString = require('./parseString');
 
 const defaultOptions = {
   url: '',
@@ -20,6 +21,14 @@ const defaultOptions = {
   excludedDomains: [],
 };
 
+const extensionMatches = (ext, options) => {
+  const extensions = Array.isArray(options.ext) ?
+      options.ext :
+      parseString(options.ext);
+  const safeExt = ext ? ext.toLowerCase() : ext;
+
+  return extensions.includes(safeExt);
+};
 
 /**
  * Should Change Attributes
@@ -44,7 +53,7 @@ module.exports = function(content, outputPath, globalOptions = {}) {
 
   const options = parseOptions(defaultOptions, globalOptions);
 
-  if (!options.ext.includes(path.extname(outputPath))) return content;
+  if (!extensionMatches(path.extname(outputPath), options)) return content;
 
   const dom = new JSDOM(content);
   const document = Object.assign(dom.window.document);
