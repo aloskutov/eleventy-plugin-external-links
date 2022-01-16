@@ -1,23 +1,23 @@
 'use strict';
 
 /**
- * Check options
+ * Safe options
  * @param {object} options
  * @return {object|null}
  */
-const checkOptions = (options) => {
+const safeOptions = (options) => {
   return (options && options.constructor === {}.constructor) ? options : null;
 };
 
 /**
  * Parse options
  * @param {object} defaultOptions
- * @param {object|string} userOptions
+ * @param {object} userOptions
  * @return {object}
  */
 const parseOptions = (defaultOptions, userOptions) => {
-  const safeDefaultOptions = checkOptions(defaultOptions);
-  const safeUserOptions = checkOptions(userOptions);
+  const safeDefaultOptions = safeOptions(defaultOptions);
+  const safeUserOptions = safeOptions(userOptions);
 
   return Object.assign({}, safeDefaultOptions, safeUserOptions);
 };
