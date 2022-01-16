@@ -23,7 +23,15 @@ test('Test #2: String', () => {
   expect(getExcludedHosts('mailto:user@example.com')).toStrictEqual([]);
 });
 
-test('Test #3: Array', () => {
+test('Test #3: String: domain list', () => {
+  expect(getExcludedHosts('www.example.com, blog.example.com, admin.example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
+  expect(getExcludedHosts('http://www.example.com; https://blog.example.com; //admin.example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
+  expect(getExcludedHosts('www.example.com blog.example.com admin.example.com mailto:user@example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
+  expect(getExcludedHosts('//www.example.com\tblog.example.com\thttps://admin.example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
+  expect(getExcludedHosts('www.example.com\n\nblog.example.com\nadmin.example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
+});
+
+test('Test #4: Array', () => {
   expect(getExcludedHosts(['https://www.example.com', '//test.com', 'tel:+79123456789', 'mailto:user@example.com', '//www.example.com/'])).toStrictEqual(['www.example.com', 'test.com']);
-  expect(getExcludedHosts(['http://www.example.com', 'http://blog.example.com', 'https://user@admin.example.com'])).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
+  expect(getExcludedHosts(['www.example.com', 'blog.example.com', 'admin.example.com'])).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
 });
