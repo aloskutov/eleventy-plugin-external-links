@@ -1,7 +1,7 @@
 'use strict';
 
 const parseURL = require('./parseURL');
-const getAllowedProtocols = require('./getAllowedProtocols');
+const {getAllowedProtocols} = require('./getAllowedProtocols');
 
 /**
  * Get hostname from url or link
