@@ -9,12 +9,7 @@ describe('OutputPath tests', () => {
   });
   test('outputPath is html', () => {
     const outputPath = 'test.html';
-    const content = `<html><head>
-    <title>test</title>
-    </head>
-    <body>
-    <h1>Test</h1>
-    </body></html>`;
+    const content = `<html><head><title>test</title></head><body><h1>Test</h1></body></html>`;
     expect(externalLinks(content, outputPath)).toBe(`<!doctype html>${content}`);
   });
   test('outputPath is js', () => {
