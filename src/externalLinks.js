@@ -54,12 +54,42 @@ const shouldChangeAttributes = (link, options) => {
   );
 };
 
+/**
+ * get rel string
+ * @param {array|string} rel attribute rel
+ * @return {string}
+ */
+const getOptionRel = (rel) => {
+  return Array.isArray(rel) ? rel.join(' ') : rel;
+};
+
+/**
+ * Change attributes
+ * @param {object} link
+ * @param {object} options
+ */
+const changeAttributes = (link, options) => {
+  if (options.overwrite) {
+    link.setAttribute('rel', getOptionRel(options.rel));
+    link.setAttribute('target', options.target);
+  } else {
+    link.setAttribute('rel', link.getAttribute('rel') || getOptionRel(options.rel));
+    link.setAttribute('target', link.getAttribute('target') || options.target);
+  }
+};
+
+/**
+ * External links
+ * @param {string} content
+ * @param {string} outputPath
+ * @param {object} globalOptions
+ * @return {string} content
+ */
 module.exports = function(content, outputPath, globalOptions = {}) {
-  if (!outputPath) return content;
-
   const options = parseOptions(defaultOptions, globalOptions);
-
-  if (!extensionMatches(path.extname(outputPath), options)) return content;
+  if (!outputPath || !extensionMatches(path.extname(outputPath), options)) {
+    return content;
+  }
 
   const dom = new JSDOM(content);
   const document = Object.assign(dom.window.document);
@@ -67,22 +97,15 @@ module.exports = function(content, outputPath, globalOptions = {}) {
 
   links.forEach((link) => {
     const linkHref = link.getAttribute('href');
-    const linkRel = link.getAttribute('rel');
-    const linkTarget = link.getAttribute('target');
-    const rel = Array.isArray(options.rel) ? options.rel.join(' ') : options.rel;
 
     if (shouldChangeAttributes(linkHref, options)) {
-      if (options.overwrite) {
-        link.setAttribute('rel', rel);
-        link.setAttribute('target', options.target);
-      } else {
-        link.setAttribute('rel', linkRel || rel);
-        link.setAttribute('target', linkTarget || options.target);
-      }
+      changeAttributes(link, options);
     }
   });
 
-  const result = options.addDoctype ? `${options.doctype}${document.documentElement.outerHTML}` : `${document.documentElement.outerHTML}`;
+  const result = options.addDoctype ?
+    `${options.doctype}${document.documentElement.outerHTML}` :
+    `${document.documentElement.outerHTML}`;
 
   return result;
 };
