@@ -1,7 +1,16 @@
 {
     "undef": true,
     "unused": true,
+    "eqnull": true,
     "node": true,
+    "futurehostile": true,
+    "latedef": true,
+    "varstmt": true,
+    "regexpu": true,
+    "nonew": true,
+    "curly": true,
+    "maxcomplexity": 4,
+    "maxdepth": 2,
     "esversion": 6,
     "globals": {
         "MY_GLOBAL": true
