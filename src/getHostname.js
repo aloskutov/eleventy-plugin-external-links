@@ -11,14 +11,13 @@ const {getAllowedProtocols} = require('./getAllowedProtocols');
  */
 function getHostname(url = '', excludedProtocols = []) {
   const parsed = parseURL(url);
+  const allowedProtocols = getAllowedProtocols(excludedProtocols);
   const protocol = parsed.groups.protocol ?
     parsed.groups.protocol.slice(0, -1) :
     null;
   let hostname = parsed.groups.hostname ? parsed.groups.hostname : false;
 
-  hostname = getAllowedProtocols(excludedProtocols).includes(protocol) ?
-    hostname :
-    false;
+  hostname = allowedProtocols.includes(protocol) ? hostname : false;
 
   return hostname;
 }

@@ -8,7 +8,9 @@ const re = /[,;\s]/u;
  * @return {array}
  */
 const parseString = (param = '') => {
-  if (!param) return [];
+  if (!param) {
+    return [];
+  }
   const safeParam = param.trim();
 
   return (safeParam[0] === '[' && safeParam[safeParam.length - 1] === ']') ?
