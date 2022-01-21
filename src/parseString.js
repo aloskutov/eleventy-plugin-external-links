@@ -1,6 +1,6 @@
 'use strict';
 
-const re = /[,;\s]/;
+const re = /[,;\s]/u;
 
 /**
  * Parse string of values
