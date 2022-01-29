@@ -15,11 +15,10 @@ const getProtocols = () => allowedProtocols;
  */
 const getAllowedProtocols = (excludedProtocols) => {
   const exclProto = Array.isArray(excludedProtocols) ?
-    excludedProtocols.map((element) =>
-      (element ? element.toLowerCase() : element)) :
-      excludedProtocols ?
-        [excludedProtocols.toLowerCase()] :
-        [excludedProtocols];
+    excludedProtocols.map((element) => (
+      element ? element.toLowerCase() : element
+    )) :
+    excludedProtocols ? [excludedProtocols.toLowerCase()] : [excludedProtocols];
 
   return allowedProtocols.filter((element) => !exclProto.includes(element));
 };
