@@ -1,22 +1,31 @@
 {
   "env": {
-    "browser": false,
-    "commonjs": true,
-    "es2021": true
+    "es2021": true,
+    "node": true,
+    "jest": true
   },
   "extends": [
-    "google"
+    "eslint:recommended"
   ],
-  "parserOptions": {
-    "ecmaVersion": 2018
-  },
   "ignorePatterns": ["*.config.js"],
   "rules": {
+    "camelcase": ["error"],
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
     "max-len": ["error", {
       "ignoreStrings": true,
       "ignoreTemplateLiterals": true,
       "ignoreRegExpLiterals": true
       }],
+    "no-confusing-arrow": ["error"],
+    "no-duplicate-imports": ["error"],
+    "no-self-compare": ["error"],
+    "no-return-await": ["error"],
+    "no-use-before-define": ["error"],
+    "no-unused-vars": ["error"],
+    "quotes": ["error", "single", {
+      "allowTemplateLiterals": true}],
+    "semi": ["error", "always"],
     "strict": "warn"
   }
 }
