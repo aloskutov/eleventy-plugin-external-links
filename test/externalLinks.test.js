@@ -62,6 +62,20 @@ describe('Local links tests', () => {
     expect(externalLinks(content, outputPath, config)).toBe(result);
   });
 
+  test('Local links, with domain, ru', () => {
+    const outputPath = 'test.html';
+    const config = {'url': 'https://какой-то-домен.рф', 'ext': '.html'};
+    const content = `<!doctype html><html><head>
+    </head><body>
+    <p>Lorem ipsum dolor sit <a href="http://какой-то-домен.рф/local-link">amet</a>, consectetur adipiscing elit. <a href="//какой-то-домен.рф/another-local-link.html">Proin   vestibulum eleifend</a> sem eu sodales. <a href="https://другой-домен.рф/without-protocol">Phasellus</a> id est vel eros commodo placerat eu <a href="какой-то-домен.рф/  consectetur">consectetur</a> arcu.</p>
+    </body></html>`;
+    const result = `<!doctype html><html><head>
+    </head><body>
+    <p>Lorem ipsum dolor sit <a href="http://какой-то-домен.рф/local-link">amet</a>, consectetur adipiscing elit. <a href="//какой-то-домен.рф/another-local-link.html">Proin   vestibulum eleifend</a> sem eu sodales. <a href="https://другой-домен.рф/without-protocol" rel="noreferrer nofollow noopener external" target="_blank">Phasellus</a> id est vel eros commodo placerat eu <a href="какой-то-домен.рф/  consectetur">consectetur</a> arcu.</p>
+    </body></html>`;
+    expect(externalLinks(content, outputPath, config)).toBe(result);
+  });
+
   test('Test excludedDomains', () => {
     const outputPath = 'test.html';
     const config = {'url': 'https://www.example.com', 'excludedDomains': ['blog.example.com', 'other.example-host.eu']};
@@ -87,6 +101,32 @@ describe('External links tests', () => {
     const result = `<!doctype html><html><head>
     </head><body>
     <a href="www.google.com" rel="noreferrer nofollow noopener external" target="_blank">Google</a>
+    </body></html>`;
+    expect(externalLinks(content, outputPath)).toBe(result);
+  });
+
+  test('External links IDN ru', () => {
+    const outputPath = 'test.html';
+    const content = `<!doctype html><html><head>
+    </head><body>
+    <a href="почта.рф">Почта России</a>
+    </body></html>`;
+    const result = `<!doctype html><html><head>
+    </head><body>
+    <a href="почта.рф" rel="noreferrer nofollow noopener external" target="_blank">Почта России</a>
+    </body></html>`;
+    expect(externalLinks(content, outputPath)).toBe(result);
+  });
+
+  test('External links IDN ko', () => {
+    const outputPath = 'test.html';
+    const content = `<!doctype html><html><head>
+    </head><body>
+    <a href="https://한국인터넷정보센터.한국">Korea Internet Information Center</a>
+    </body></html>`;
+    const result = `<!doctype html><html><head>
+    </head><body>
+    <a href="https://한국인터넷정보센터.한국" rel="noreferrer nofollow noopener external" target="_blank">Korea Internet Information Center</a>
     </body></html>`;
     expect(externalLinks(content, outputPath)).toBe(result);
   });

@@ -67,8 +67,6 @@ The site address can be specified without a protocol, only the fully qualified d
 
 Addresses with protocols other than `http`, `https`, `ftp` and `ftps` are excluded from processing and remain unchanged.
 
-**Doesn't support IDN (Internationalized Domain Names)!**
-
 ## Examples
 
 ### With default values, except url

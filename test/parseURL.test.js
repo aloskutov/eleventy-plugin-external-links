@@ -17,6 +17,7 @@ test('Get protocols', () => {
   expect(parseURL('/path').groups.protocol).toBeUndefined();
   expect(parseURL('#id').groups.protocol).toBeUndefined();
   expect(parseURL('../index.php#id').groups.protocol).toBeUndefined();
+  expect(parseURL('почта.рф').groups.protocol).toBeUndefined();
 });
 
 test('Get hostname', () => {
@@ -31,9 +32,14 @@ test('Get hostname', () => {
   expect(parseURL('//www.example.com/path').groups.hostname).toBe('www.example.com');
   expect(parseURL('www.example.com/path').groups.hostname).toBe('www.example.com');
   expect(parseURL('example.com').groups.hostname).toBe('example.com');
+  expect(parseURL('http://почта.рф').groups.hostname).toBe('почта.рф');
+  expect(parseURL('http://яндекс.рф').groups.hostname).toBe('яндекс.рф');
+  expect(parseURL('https://xn--d1acpjx3f.xn--p1ai/').groups.hostname).toBe('xn--d1acpjx3f.xn--p1ai');
+  expect(parseURL('https://한국인터넷정보센터.한국/jsp/eng/domain/policy.jsp').groups.hostname).toBe('한국인터넷정보센터.한국');
   expect(parseURL('/index.html').groups.hostname).toBeUndefined();
   expect(parseURL('../index.html').groups.hostname).toBeUndefined();
   expect(parseURL('./index.html').groups.hostname).toBeUndefined();
   expect(parseURL('#index').groups.hostname).toBeUndefined();
   expect(parseURL('?query=index').groups.hostname).toBeUndefined();
+
 });
