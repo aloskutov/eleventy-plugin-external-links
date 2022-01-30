@@ -127,3 +127,4 @@ The following links are not processed
 * [x] add `addDoctype`. _Optional doctype_ `<!doctype html>`
 * [x] add `doctype`. _Doctype string. Default:_ `<!doctype html>`
 * [x] add `ext`. _List of processed files, not only `.html` files. Default:_ `.html`
+* [x] support IDN (Internationalized Domain Names)
