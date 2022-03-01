@@ -2,36 +2,52 @@
 
 const getExcludedHosts = require('../src/getExcludedHosts');
 
-
-test('Test #1: Empty & Undefined', () => {
-  expect(getExcludedHosts()).toStrictEqual([]);
-  expect(getExcludedHosts(null)).toStrictEqual([]);
-  expect(getExcludedHosts(false)).toStrictEqual([]);
-  expect(getExcludedHosts([])).toStrictEqual([]);
+describe('Test #1. Emplty values', () => {
+  test.each([
+    {url: undefined, expected:[] },
+    {url: null, expected:[] },
+    {url: false, expected:[] },
+    {url: [], expected:[] },
+  ])('getExcludedHosts($url)', ({url, expected}) => {
+    expect(getExcludedHosts(url)).toEqual(expect.arrayContaining(expected));
+  });
 });
 
-test('Test #2: String', () => {
-  expect(getExcludedHosts('https://www.example.com')).toStrictEqual(['www.example.com']);
-  expect(getExcludedHosts('//www.example.com')).toStrictEqual(['www.example.com']);
-  expect(getExcludedHosts('www.example.com')).toStrictEqual(['www.example.com']);
-  expect(getExcludedHosts('/index.html')).toStrictEqual([]);
-  expect(getExcludedHosts('./index.html')).toStrictEqual([]);
-  expect(getExcludedHosts('../index.html')).toStrictEqual([]);
-  expect(getExcludedHosts('../index.html?query=test')).toStrictEqual([]);
-  expect(getExcludedHosts('?query=test')).toStrictEqual([]);
-  expect(getExcludedHosts('tel:+79123456789')).toStrictEqual([]);
-  expect(getExcludedHosts('mailto:user@example.com')).toStrictEqual([]);
+describe('Test #2. String', () => {
+  test.each([
+    {url: 'https://www.example.com', expected:['www.example.com']},
+    {url: '//www.example.com', expected:['www.example.com']},
+    {url: 'www.example.com', expected:['www.example.com']},
+    {url: '/index.html', expected:[]},
+    {url: './index.html', expected:[]},
+    {url: '../index.html', expected:[]},
+    {url: '../index.html?query=test', expected:[]},
+    {url: '?query=test', expected:[]},
+    {url: 'tel:+79123456789', expected:[]},
+    {url: 'mailto:user@example.com', expected:[]}
+  ])('getExcludedHosts($url)', ({url, expected}) => {
+    expect(getExcludedHosts(url)).toEqual(expect.arrayContaining(expected));
+  });
 });
 
-test('Test #3: String: domain list', () => {
-  expect(getExcludedHosts('www.example.com, blog.example.com, admin.example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
-  expect(getExcludedHosts('http://www.example.com; https://blog.example.com; //admin.example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
-  expect(getExcludedHosts('www.example.com blog.example.com admin.example.com mailto:user@example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
-  expect(getExcludedHosts('//www.example.com\tblog.example.com\thttps://admin.example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
-  expect(getExcludedHosts('www.example.com\n\nblog.example.com\nadmin.example.com')).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
+describe('Test #3: String: domain list', () => {
+  test.each([
+    {url: 'www.example.com, blog.example.com, admin.example.com', expected: ['www.example.com', 'blog.example.com', 'admin.example.com']},
+    {url: 'http://www.example.com; https://blog.example.com; //admin.example.com', expected: ['www.example.com', 'blog.example.com', 'admin.example.com']},
+    {url: 'www.example.com blog.example.com admin.example.com mailto:user@example.com', expected: ['www.example.com', 'blog.example.com', 'admin.example.com']},
+    {url: ['www.example.com', 'blog.example.com', 'admin.example.com'], expected: ['www.example.com', 'blog.example.com', 'admin.example.com']},
+    {url: 'www.example.com\n\nblog.example.com\nadmin.example.com', expected: ['www.example.com', 'blog.example.com', 'admin.example.com']}
+  ])('getExcludedHosts($url)', ({url, expected}) => {
+    expect(getExcludedHosts(url)).toEqual(expect.arrayContaining(expected));
+  });
 });
 
-test('Test #4: Array', () => {
-  expect(getExcludedHosts(['https://www.example.com', '//test.com', 'tel:+79123456789', 'mailto:user@example.com', '//www.example.com/'])).toStrictEqual(['www.example.com', 'test.com']);
-  expect(getExcludedHosts(['www.example.com', 'blog.example.com', 'admin.example.com'])).toStrictEqual(['www.example.com', 'blog.example.com', 'admin.example.com']);
+describe('Test #4: Array', () => {
+  test.each([
+    {url: ['https://www.example.com', '//test.com', 'tel:+79123456789', 'mailto:user@example.com', '//www.example.com/'], expected: ['www.example.com', 'test.com']},
+    {url: ['www.example.com', 'blog.example.com', 'admin.example.com'], expected: ['www.example.com', 'blog.example.com', 'admin.example.com']},
+  ])('getExcludedHosts($url)', ({url, expected}) => {
+    expect(getExcludedHosts(url)).toEqual(expect.arrayContaining(expected));
+  });
 });
+
