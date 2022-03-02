@@ -4,10 +4,10 @@ const getExcludedHosts = require('../src/getExcludedHosts');
 
 describe('Test #1. Emplty values', () => {
   test.each([
-    {url: undefined, expected:[] },
-    {url: null, expected:[] },
-    {url: false, expected:[] },
-    {url: [], expected:[] },
+    {expected:[]},
+    {url: null, expected:[]},
+    {url: false, expected:[]},
+    {url: [], expected:[]},
   ])('getExcludedHosts($url)', ({url, expected}) => {
     expect(getExcludedHosts(url)).toEqual(expect.arrayContaining(expected));
   });
