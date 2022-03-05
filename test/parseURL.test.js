@@ -2,44 +2,64 @@
 
 const parseURL = require('../src/parseURL');
 
-test('Get protocols', () => {
-  expect(parseURL('http://www.example.com/path').groups.protocol).toBe('http:');
-  expect(parseURL('https://ru.wikipedia.org/wiki/URI').groups.protocol).toBe('https:');
-  expect(parseURL('ftp://ftp.is.co.za/rfc/rfc1808.txt').groups.protocol).toBe('ftp:');
-  expect(parseURL('file://C:\\UserName.HostName\\Projects\\Wikipedia_Articles\\URI.xml').groups.protocol).toBe('file:');
-  expect(parseURL('ldap://[2001:db8::7]/c=GB?objectClass?one').groups.protocol).toBe('ldap:');
-  expect(parseURL('mailto:John.Doe@example.com').groups.protocol).toBe('mailto:');
-  expect(parseURL('sip:911@pbx.mycompany.com').groups.protocol).toBe('sip:');
-  expect(parseURL('telnet://192.0.2.16:80/').groups.protocol).toBe('telnet:');
-  expect(parseURL('urn:oasis:names:specification:docbook:dtd:xml:4.1.2').groups.protocol).toBe('urn:');
-  expect(parseURL('//www.example.com/path').groups.protocol).toBeUndefined();
-  expect(parseURL('www.example.com/path').groups.protocol).toBeUndefined();
-  expect(parseURL('/path').groups.protocol).toBeUndefined();
-  expect(parseURL('#id').groups.protocol).toBeUndefined();
-  expect(parseURL('../index.php#id').groups.protocol).toBeUndefined();
-  expect(parseURL('почта.рф').groups.protocol).toBeUndefined();
+describe('Test #1. Get protocols. Defined', () => {
+  test.each([
+    {url: 'http://www.example.com/path', expected: 'http:'},
+    {url: 'https://ru.wikipedia.org/wiki/URI', expected: 'https:'},
+    {url: 'ftp://ftp.is.co.za/rfc/rfc1808.txt', expected: 'ftp:'},
+    {url: 'file://C:\\UserName.HostName\\Projects\\Wikipedia_Articles\\URI.xml', expected: 'file:'},
+    {url: 'ldap://[2001:db8::7]/c=GB?objectClass?one', expected: 'ldap:'},
+    {url: 'mailto:John.Doe@example.com', expected: 'mailto:'},
+    {url: 'sip:911@pbx.mycompany.com', expected: 'sip:'},
+    {url: 'telnet://192.0.2.16:80/', expected: 'telnet:'},
+    {url: 'urn:oasis:names:specification:docbook:dtd:xml:4.1.2', expected: 'urn:'},
+  ])('parseUrl($url).groups.protocol', ({url, expected}) => {
+    expect(parseURL(url).groups.protocol).toBe(expected);
+  });
 });
 
-test('Get hostname', () => {
-  expect(parseURL('').groups.hostname).toBeUndefined();
-  expect(parseURL().groups.hostname).toBeUndefined();
-  expect(parseURL(null).groups.hostname).toBeUndefined();
-  expect(parseURL('http://www.example.com/path').groups.hostname).toBe('www.example.com');
-  expect(parseURL('http://example.com/path').groups.hostname).toBe('example.com');
-  expect(parseURL('https://www.e-x-a-m-p-l-e.com/path').groups.hostname).toBe('www.e-x-a-m-p-l-e.com');
-  expect(parseURL('https://192.168.0.1:8080/path').groups.hostname).toBe('192.168.0.1');
-  expect(parseURL('ftp://www.example.com/path').groups.hostname).toBe('www.example.com');
-  expect(parseURL('//www.example.com/path').groups.hostname).toBe('www.example.com');
-  expect(parseURL('www.example.com/path').groups.hostname).toBe('www.example.com');
-  expect(parseURL('example.com').groups.hostname).toBe('example.com');
-  expect(parseURL('http://почта.рф').groups.hostname).toBe('почта.рф');
-  expect(parseURL('http://яндекс.рф').groups.hostname).toBe('яндекс.рф');
-  expect(parseURL('https://xn--d1acpjx3f.xn--p1ai/').groups.hostname).toBe('xn--d1acpjx3f.xn--p1ai');
-  expect(parseURL('https://한국인터넷정보센터.한국/jsp/eng/domain/policy.jsp').groups.hostname).toBe('한국인터넷정보센터.한국');
-  expect(parseURL('/index.html').groups.hostname).toBeUndefined();
-  expect(parseURL('../index.html').groups.hostname).toBeUndefined();
-  expect(parseURL('./index.html').groups.hostname).toBeUndefined();
-  expect(parseURL('#index').groups.hostname).toBeUndefined();
-  expect(parseURL('?query=index').groups.hostname).toBeUndefined();
+describe('Test #2. Get protocols. Undefined', () => {
+  test.each([
+    {url: '//www.example.com/path'},
+    {url: 'www.example.com/path'},
+    {url: '/path'},
+    {url: '#id'},
+    {url: '../index.php#id'},
+    {url: 'почта.рф'},
+  ])('parseUrl($url).groups.protocol', ({url}) => {
+    expect(parseURL(url).groups.protocol).toBeUndefined();
+  });
+});
 
+describe('Test #3. Get hostname. Defined', () => {
+  test.each([
+    {url: 'http://www.example.com/path', expected: 'www.example.com'},
+    {url: 'http://example.com/path', expected: 'example.com'},
+    {url: 'https://www.e-x-a-m-p-l-e.com/path', expected: 'www.e-x-a-m-p-l-e.com'},
+    {url: 'https://192.168.0.1:8080/path', expected: '192.168.0.1'},
+    {url: 'ftp://www.example.com/path', expected: 'www.example.com'},
+    {url: '//www.example.com/path', expected: 'www.example.com'},
+    {url: 'www.example.com/path', expected: 'www.example.com'},
+    {url: 'example.com', expected: 'example.com'},
+    {url: 'http://почта.рф', expected: 'почта.рф'},
+    {url: 'http://яндекс.рф', expected: 'яндекс.рф'},
+    {url: 'https://xn--d1acpjx3f.xn--p1ai/', expected: 'xn--d1acpjx3f.xn--p1ai'},
+    {url: 'https://한국인터넷정보센터.한국/jsp/eng/domain/policy.jsp', expected: '한국인터넷정보센터.한국'},
+  ])('parseUrl($url).groups.hostname', ({url, expected}) => {
+    expect(parseURL(url).groups.hostname).toBe(expected);
+  });
+});
+
+describe('Test #4. Get hostname. Undefined', () => {
+  test.each([
+    {url: null},
+    {},
+    {url: ''},
+    {url: '/index.html'},
+    {url: './index.html'},
+    {url: '#index'},
+    {url: '?query=index'},
+  ])('parseUrl($url).groups.hostname', ({url}) => {
+    expect(parseURL(url).groups.hostname).toBeUndefined();
+  });
 });
