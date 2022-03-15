@@ -36,7 +36,7 @@
     "jsdom": "^19.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.10.0",
+    "eslint": "^8.11.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^27.5.1",
     "jshint": "^2.13.4"
