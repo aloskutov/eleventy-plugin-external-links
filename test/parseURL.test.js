@@ -23,6 +23,8 @@ describe('Test #2. Get protocols. Undefined', () => {
     {url: '//www.example.com/path'},
     {url: 'www.example.com/path'},
     {url: '/path'},
+    {url: '/path/'},
+    {url: 'path/'},
     {url: '#id'},
     {url: '../index.php#id'},
     {url: 'почта.рф'},
@@ -59,6 +61,9 @@ describe('Test #4. Get hostname. Undefined', () => {
     {url: './index.html'},
     {url: '#index'},
     {url: '?query=index'},
+    {url: '/somepath/'},
+    {url: 'somepath/'},
+    {url: '/somepath'},
   ])('parseUrl($url).groups.hostname', ({url}) => {
     expect(parseURL(url).groups.hostname).toBeUndefined();
   });
