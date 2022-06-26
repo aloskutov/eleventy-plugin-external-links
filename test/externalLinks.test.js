@@ -163,6 +163,40 @@ describe('External links tests', () => {
     expect(externalLinks(content, outputPath, config)).toBe(result);
   });
 
+  test('External links overwrite:false with custom rel value', () => {
+    const outputPath = 'test.html';
+    const config = {
+      overwrite: false,
+      rel: ['noreferrer', 'nofollow', 'noopener', 'external'],
+    };
+    const content = `<html><head>
+    </head><body>
+    <a href="www.google.com" rel="somevalue">Google</a>
+    </body></html>`;
+    const result = `<!doctype html><html><head>
+    </head><body>
+    <a href="www.google.com" rel="somevalue" target="_blank">Google</a>
+    </body></html>`;
+    expect(externalLinks(content, outputPath, config)).toBe(result);
+  });
+
+  test('External links overwrite:true with custom rel value', () => {
+    const outputPath = 'test.html';
+    const config = {
+      overwrite: true,
+      rel: ['noreferrer', 'nofollow', 'noopener', 'external'],
+    };
+    const content = `<html><head>
+    </head><body>
+    <a href="www.google.com" rel="somevalue ">Google</a>
+    </body></html>`;
+    const result = `<!doctype html><html><head>
+    </head><body>
+    <a href="www.google.com" rel="somevalue noreferrer nofollow noopener external" target="_blank">Google</a>
+    </body></html>`;
+    expect(externalLinks(content, outputPath, config)).toBe(result);
+  });
+
   test('External links overwrite:false addDoctype: false', () => {
     const outputPath = 'test.html';
     const config = {

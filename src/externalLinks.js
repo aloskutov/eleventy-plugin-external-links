@@ -7,6 +7,7 @@ const parseOptions = require('./parseOptions');
 const getExcludedHosts = require('./getExcludedHosts');
 const getHostname = require('./getHostname');
 const parseString = require('./parseString');
+const {getOptionRel, concatRel} = require('./handlerRel');
 
 const defaultOptions = {
   url: '',
@@ -55,22 +56,13 @@ const shouldChangeAttributes = (link, options) => {
 };
 
 /**
- * get rel string
- * @param {array|string} rel attribute rel
- * @return {string}
- */
-const getOptionRel = (rel) => {
-  return Array.isArray(rel) ? rel.join(' ') : rel;
-};
-
-/**
  * Change attributes
  * @param {object} link
  * @param {object} options
  */
 const changeAttributes = (link, options) => {
   if (options.overwrite) {
-    link.setAttribute('rel', getOptionRel(options.rel));
+    link.setAttribute('rel', concatRel(link.getAttribute('rel'), getOptionRel(options.rel)));
     link.setAttribute('target', options.target);
   } else {
     link.setAttribute('rel', link.getAttribute('rel') || getOptionRel(options.rel));
