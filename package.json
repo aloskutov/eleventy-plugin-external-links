@@ -33,12 +33,12 @@
     "url": "https://github.com/aloskutov/eleventy-plugin-external-links/issues"
   },
   "dependencies": {
-    "jsdom": "^19.0.0"
+    "jsdom": "^20.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.14.0",
+    "eslint": "^8.18.0",
     "eslint-config-google": "^0.14.0",
-    "jest": "^28.0.0",
+    "jest": "^28.1.1",
     "jshint": "^2.13.4"
   }
 }
