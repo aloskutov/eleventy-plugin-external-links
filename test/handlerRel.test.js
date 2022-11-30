@@ -15,6 +15,13 @@ describe('rel attribute handler test', () => {
     expect(getOptionRel(value)).toBe(content);
   });
 
+  test('concatRel with attribute value and w/o rel', () => {
+    const attr = 'somevalue';
+    let rel;
+    const expected = 'somevalue';
+    expect(concatRel(attr, rel)).toBe(expected);
+  });
+
   test('concatRel with attribute value and rel', () => {
     const attr = 'somevalue ';
     const rel = 'noreferrer nofollow noopener external';
