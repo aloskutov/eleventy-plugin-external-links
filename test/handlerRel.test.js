@@ -1,11 +1,11 @@
 'use strict';
 
-const {getOptionRel, concatRel} = require('../src/handlerRel');
+const { getOptionRel, concatRel } = require('../src/handlerRel');
 
 describe('rel attribute handler test', () => {
   test('getOptionRel is undefined', () => {
     const content = '';
-    const value = undefined;
+    const value = void 0;
     expect(getOptionRel(value)).toBe(content);
   });
 
