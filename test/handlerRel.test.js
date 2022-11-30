@@ -5,7 +5,7 @@ const { getOptionRel, concatRel } = require('../src/handlerRel');
 describe('rel attribute handler test', () => {
   test('getOptionRel is undefined', () => {
     const content = '';
-    const value = void 0;
+    let value;
     expect(getOptionRel(value)).toBe(content);
   });
 
