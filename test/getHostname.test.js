@@ -4,9 +4,10 @@ const getHostname = require('../src/getHostname');
 
 describe('Test #1. Hostname is IP address', () => {
   test.each([
-    {url: 'http://8.8.8.8/', expected: '8.8.8.8'},
-    {url: '8.8.8.8', expected: '8.8.8.8'}
-  ])('getHostname($url)', ({url, expected}) => {
+      url: 'http://[2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d]/',
+      expected: '[2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d]',
+    },
+    { url: '8.8.8.8', expected: '8.8.8.8' },
     expect(getHostname(url)).toBe(expected);
   });
 });

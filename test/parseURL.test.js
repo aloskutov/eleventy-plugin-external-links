@@ -35,19 +35,10 @@ describe('Test #2. Get protocols. Undefined', () => {
 
 describe('Test #3. Get hostname. Defined', () => {
   test.each([
-    {url: 'http://www.example.com/path', expected: 'www.example.com'},
-    {url: 'http://example.com/path', expected: 'example.com'},
-    {url: 'https://www.e-x-a-m-p-l-e.com/path', expected: 'www.e-x-a-m-p-l-e.com'},
-    {url: 'https://192.168.0.1:8080/path', expected: '192.168.0.1'},
-    {url: 'ftp://www.example.com/path', expected: 'www.example.com'},
-    {url: '//www.example.com/path', expected: 'www.example.com'},
-    {url: 'www.example.com/path', expected: 'www.example.com'},
-    {url: 'example.com', expected: 'example.com'},
-    {url: 'http://почта.рф', expected: 'почта.рф'},
-    {url: 'http://яндекс.рф', expected: 'яндекс.рф'},
-    {url: 'https://xn--d1acpjx3f.xn--p1ai/', expected: 'xn--d1acpjx3f.xn--p1ai'},
-    {url: 'https://한국인터넷정보센터.한국/jsp/eng/domain/policy.jsp', expected: '한국인터넷정보센터.한국'},
-  ])('parseUrl($url).groups.hostname', ({url, expected}) => {
+    {
+      url: 'http://[2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d]/',
+      expected: '[2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d]',
+    },
     expect(parseURL(url).groups.hostname).toBe(expected);
   });
 });
