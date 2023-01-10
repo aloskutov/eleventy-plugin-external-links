@@ -1,6 +1,6 @@
 {
   "name": "@aloskutov/eleventy-plugin-external-links",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Eleventy external links plugin",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
