@@ -17,7 +17,7 @@ const defaultOptions = {
   overwrite: true,
   excludedProtocols: [],
   doctype: '<!doctype html>',
-  addDoctype: true,
+  addDoctype: false,
   ext: ['.html'],
   excludedDomains: [],
 };
