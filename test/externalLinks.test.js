@@ -237,3 +237,15 @@ describe('External links tests', () => {
     expect(externalLinks(content, outputPath, config)).toBe(result);
   });
 });
+
+describe('Partial content tests', () => {
+  test('Partial content links overwrite:false', () => {
+    const outputPath = 'test.html';
+    const config = {
+      overwrite: false,
+    };
+    const content = `<a href="www.google.com" rel="noreferrer">Google</a>`;
+    const result = `<a href="www.google.com" rel="noreferrer" target="_blank">Google</a>`;
+    expect(externalLinks(content, outputPath, config)).toBe(result);
+  });
+});
