@@ -10,7 +10,7 @@ describe('OutputPath tests', () => {
   test('outputPath is html', () => {
     const outputPath = 'test.html';
     const content = `<html><head><title>test</title></head><body><h1>Test</h1></body></html>`;
-    expect(externalLinks(content, outputPath)).toBe(`<!doctype html>${content}`);
+    expect(externalLinks(content, outputPath)).toBe(content);
   });
   test('outputPath is js', () => {
     const outputPath = 'test.js';
@@ -156,7 +156,7 @@ describe('External links tests', () => {
     </head><body>
     <a href="www.google.com" rel="noreferrer">Google</a>
     </body></html>`;
-    const result = `<!doctype html><html><head>
+    const result = `<html><head>
     </head><body>
     <a href="www.google.com" rel="noreferrer" target="_blank">Google</a>
     </body></html>`;
@@ -167,6 +167,7 @@ describe('External links tests', () => {
     const outputPath = 'test.html';
     const config = {
       overwrite: false,
+      addDoctype: true,
       rel: ['noreferrer', 'nofollow', 'noopener', 'external'],
     };
     const content = `<html><head>
@@ -184,6 +185,7 @@ describe('External links tests', () => {
     const outputPath = 'test.html';
     const config = {
       overwrite: true,
+      addDoctype: true,
       rel: ['noreferrer', 'nofollow', 'noopener', 'external'],
     };
     const content = `<html><head>
@@ -219,6 +221,7 @@ describe('External links tests', () => {
     const config = {
       overwrite: false,
       rel: 'noreferrer',
+      addDoctype: true,
       doctype: `< !DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd" >`,
     };
