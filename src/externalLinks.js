@@ -18,6 +18,7 @@ const defaultOptions = {
   excludedProtocols: [],
   doctype: '<!doctype html>',
   addDoctype: false,
+  partial: false,
   ext: ['.html'],
   excludedDomains: [],
 };
