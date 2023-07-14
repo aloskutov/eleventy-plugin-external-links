@@ -1,6 +1,6 @@
 'use strict';
 
-const {JSDOM} = require('jsdom');
+const {parse} = require('node-html-parser');
 const path = require('path');
 
 const parseOptions = require('./parseOptions');
@@ -91,8 +91,7 @@ module.exports = function(content, outputPath, globalOptions = {}) {
     return content;
   }
 
-  const dom = new JSDOM(content);
-  const document = Object.assign(dom.window.document);
+  const document = parse(content);
   const [...links] = document.querySelectorAll(options.selector);
 
   links.forEach((link) => {
