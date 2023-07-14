@@ -18,7 +18,6 @@ const defaultOptions = {
   excludedProtocols: [],
   doctype: '<!doctype html>',
   addDoctype: false,
-  partial: false,
   ext: ['.html'],
   excludedDomains: [],
 };
@@ -72,11 +71,9 @@ const changeAttributes = (link, options) => {
 };
 
 const getResult = (document, options) => {
-  return options.partial ?
-    `${document.toString()}` :
-    options.addDoctype ?
-      `${options.doctype}${document.innerHTML}` :
-      `${document.toString()}`;
+  return options.addDoctype ?
+    `${options.doctype}${document.outerHTML}` :
+    `${document.outerHTML}`;
 };
 
 /**
