@@ -70,6 +70,14 @@ const changeAttributes = (link, options) => {
   }
 };
 
+const getResult = (document, options) => {
+  return options.partial ?
+    `${document.toString()}` :
+    options.addDoctype ?
+      `${options.doctype}${document.innerHTML}` :
+      `${document.toString()}`;
+};
+
 /**
  * External links
  * @param {string} content
@@ -95,9 +103,5 @@ module.exports = function(content, outputPath, globalOptions = {}) {
     }
   });
 
-  const result = options.addDoctype ?
-    `${options.doctype}${document.documentElement.outerHTML}` :
-    `${document.documentElement.outerHTML}`;
-
-  return result;
+  return getResult(document, options);
 };
