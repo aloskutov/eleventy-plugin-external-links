@@ -1,6 +1,6 @@
 'use strict';
 
-const {JSDOM} = require('jsdom');
+const {parse} = require('node-html-parser');
 const path = require('path');
 
 const parseOptions = require('./parseOptions');
@@ -17,7 +17,7 @@ const defaultOptions = {
   overwrite: true,
   excludedProtocols: [],
   doctype: '<!doctype html>',
-  addDoctype: true,
+  addDoctype: false,
   ext: ['.html'],
   excludedDomains: [],
 };
@@ -71,6 +71,18 @@ const changeAttributes = (link, options) => {
 };
 
 /**
+ * Get result
+ * @param {object} document
+ * @param {object} options
+ * @returns
+ */
+const getResult = (document, options) => {
+  return options.addDoctype ?
+    `${options.doctype}${document.outerHTML}` :
+    `${document.outerHTML}`;
+};
+
+/**
  * External links
  * @param {string} content
  * @param {string} outputPath
@@ -83,8 +95,7 @@ module.exports = function(content, outputPath, globalOptions = {}) {
     return content;
   }
 
-  const dom = new JSDOM(content);
-  const document = Object.assign(dom.window.document);
+  const document = parse(content);
   const [...links] = document.querySelectorAll(options.selector);
 
   links.forEach((link) => {
@@ -95,9 +106,5 @@ module.exports = function(content, outputPath, globalOptions = {}) {
     }
   });
 
-  const result = options.addDoctype ?
-    `${options.doctype}${document.documentElement.outerHTML}` :
-    `${document.documentElement.outerHTML}`;
-
-  return result;
+  return getResult(document, options);
 };
