@@ -9,7 +9,7 @@ describe('OutputPath tests', () => {
   });
   test('outputPath is html', () => {
     const outputPath = 'test.html';
-    const content = `<html><head><title>test</title></head><body><h1>Test</h1></body></html>`;
+    const content = '<html><head><title>test</title></head><body><h1>Test</h1></body></html>';
     expect(externalLinks(content, outputPath)).toBe(content);
   });
   test('outputPath is js', () => {
@@ -244,8 +244,8 @@ describe('Partial content tests', () => {
     const config = {
       overwrite: false,
     };
-    const content = `<a href="www.google.com" rel="noreferrer">Google</a>`;
-    const result = `<a href="www.google.com" rel="noreferrer" target="_blank">Google</a>`;
+    const content = '<a href="www.google.com" rel="noreferrer">Google</a>';
+    const result = '<a href="www.google.com" rel="noreferrer" target="_blank">Google</a>';
     expect(externalLinks(content, outputPath, config)).toBe(result);
   });
 });
