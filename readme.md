@@ -40,7 +40,7 @@ module.exports = (eleventyConfig) => {
 | overwrite | boolean | true | Overwrite attribute values or not. If the value is false, then the existing attribute is not overwritten. |
 | excludedProtocols | array | [] | Exclude links with matching protocols from processing. The protocol must be specified without a colon. Ex. `['ftp']`|
 | doctype | string | '<!doctype html>' | Doctype value |
-| addDoctype | boolean | true | Add doctype to result or not |
+| addDoctype | boolean | _false_ | Add doctype to result or not |
 | ext | array | ['.html'] | Extensions |
 | excludedDomains | array or string | [] | For cross-linked domains and subdomains. Array or string of values separated by comma, semicolon, tab or space symbols. |
 
@@ -55,7 +55,7 @@ module.exports = (eleventyConfig) => {
   overwrite: true,
   excludedProtocols: [],
   doctype: '<!doctype html>',
-  addDoctype: true,
+  addDoctype: false,
   ext: ['.html'],
   excludedDomains: [],
 }
@@ -126,3 +126,14 @@ The following links are not processed
 * [x] add `doctype`. _Doctype string. Default:_ `<!doctype html>`
 * [x] add `ext`. _List of processed files, not only `.html` files. Default:_ `.html`
 * [x] support IDN (Internationalized Domain Names)
+* [x] add support for partial html code
+* [ ] further reduce the impact on the html source code
+
+## Changes
+
+### v.2.0
+
+* Changed html parsing library from `JSDOM` to `node-html-parser`.
+* Increased speed of html code processing.
+* The `addDoctype` option is now, set to `false`.
+* The impact of the parsing library on the html code has been reduced. JSDOM forced wrapping in `<html>` if it was missing. It was not possible to work with code fragments (not wrapped in `<html>`).
