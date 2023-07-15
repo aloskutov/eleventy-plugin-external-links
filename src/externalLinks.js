@@ -70,6 +70,12 @@ const changeAttributes = (link, options) => {
   }
 };
 
+/**
+ * Get result
+ * @param {object} document
+ * @param {object} options
+ * @returns
+ */
 const getResult = (document, options) => {
   return options.addDoctype ?
     `${options.doctype}${document.outerHTML}` :
