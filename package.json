@@ -2,6 +2,7 @@
   "name": "@aloskutov/eleventy-plugin-external-links",
   "version": "2.0.1",
   "description": "Eleventy external links plugin",
+  "prettier": "@aloskutov/prettier-config",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "public"
