@@ -43,6 +43,7 @@ module.exports = (eleventyConfig) => {
 | addDoctype | boolean | _false_ | Add doctype to result or not |
 | ext | array | ['.html'] | Extensions |
 | excludedDomains | array or string | [] | For cross-linked domains and subdomains. Array or string of values separated by comma, semicolon, tab or space symbols. |
+| enableTarget | boolean | true | Option to enable/disable the 'target' attribute. Default value is `true`, i.e. `target` is enabled. |
 
 ### Default options
 
@@ -58,6 +59,7 @@ module.exports = (eleventyConfig) => {
   addDoctype: false,
   ext: ['.html'],
   excludedDomains: [],
+  enableTarget: true,
 }
 ```
 
@@ -130,6 +132,12 @@ The following links are not processed
 * [ ] further reduce the impact on the html source code
 
 ## Changes
+
+### 2.1.0
+
+Added `enableTarget` option with default value `true`. If for some reason you need to disable the `target` attribute, set the `enableTarget` option to `false`.
+
+This option does not break backwards compatibility.
 
 ### v.2.0
 
