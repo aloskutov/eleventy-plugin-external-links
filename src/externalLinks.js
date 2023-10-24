@@ -20,6 +20,7 @@ const defaultOptions = {
   addDoctype: false,
   ext: ['.html'],
   excludedDomains: [],
+  enableTarget: true,
 };
 
 /**
@@ -55,6 +56,16 @@ const shouldChangeAttributes = (link, options) => {
   );
 };
 
+const setTargetAttribute = (link, options) => {
+  if (options.enableTarget) {
+    if (options.overwrite) {
+      link.setAttribute('target', options.target);
+    } else {
+      link.setAttribute('target', link.getAttribute('target') || options.target);
+    }
+  }
+};
+
 /**
  * Change attributes
  * @param {object} link
@@ -63,11 +74,10 @@ const shouldChangeAttributes = (link, options) => {
 const changeAttributes = (link, options) => {
   if (options.overwrite) {
     link.setAttribute('rel', concatRel(link.getAttribute('rel'), getOptionRel(options.rel)));
-    link.setAttribute('target', options.target);
   } else {
     link.setAttribute('rel', link.getAttribute('rel') || getOptionRel(options.rel));
-    link.setAttribute('target', link.getAttribute('target') || options.target);
   }
+  setTargetAttribute(link, options);
 };
 
 /**
