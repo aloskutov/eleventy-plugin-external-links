@@ -249,3 +249,53 @@ describe('Partial content tests', () => {
     expect(externalLinks(content, outputPath, config)).toBe(result);
   });
 });
+
+describe('enableTarget option tests', () =>{
+  test('enableTarget:true, overwrite: false', () => {
+    const outputPath = 'test.html';
+    const config = {
+      enableTarget: true,
+      overwrite: false,
+    };
+    const content = '<a href="www.google.com" rel="noreferrer">Google</a>';
+    const result =
+      '<a href="www.google.com" rel="noreferrer" target="_blank">Google</a>';
+    expect(externalLinks(content, outputPath, config)).toBe(result);
+  });
+
+  test('enableTarget:false, overwrite: false', () => {
+    const outputPath = 'test.html';
+    const config = {
+      enableTarget: false,
+      overwrite: false,
+    };
+    const content = '<a href="www.google.com" rel="noreferrer">Google</a>';
+    const result =
+      '<a href="www.google.com" rel="noreferrer">Google</a>';
+    expect(externalLinks(content, outputPath, config)).toBe(result);
+  });
+
+  test('enableTarget:true, overwrite: true', () => {
+    const outputPath = 'test.html';
+    const config = {
+      enableTarget: true,
+      overwrite: true,
+    };
+    const content = '<a href="www.google.com">Google</a>';
+    const result =
+      '<a href="www.google.com" rel="noreferrer nofollow noopener external" target="_blank">Google</a>';
+    expect(externalLinks(content, outputPath, config)).toBe(result);
+  });
+
+  test('enableTarget:false, overwrite: true,', () => {
+    const outputPath = 'test.html';
+    const config = {
+      enableTarget: false,
+      overwrite: true,
+    };
+    const content = '<a href="www.google.com">Google</a>';
+    const result = '<a href="www.google.com" rel="noreferrer nofollow noopener external">Google</a>';
+    expect(externalLinks(content, outputPath, config)).toBe(result);
+  });
+
+});
