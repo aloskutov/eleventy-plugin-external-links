@@ -56,6 +56,11 @@ const shouldChangeAttributes = (link, options) => {
   );
 };
 
+/**
+ * Set target attributes
+ * @param {object} link
+ * @param {object} options
+ */
 const setTargetAttribute = (link, options) => {
   if (options.enableTarget) {
     if (options.overwrite) {
