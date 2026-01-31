@@ -1,5 +1,3 @@
-'use strict';
-
 const re = /[,;\s]/u;
 
 /**
@@ -7,7 +5,7 @@ const re = /[,;\s]/u;
  * @param {string} param
  * @return {array}
  */
-const parseString = (param = '') => {
+export default (param = '') => {
   if (!param) {
     return [];
   }
@@ -17,5 +15,3 @@ const parseString = (param = '') => {
     JSON.parse(safeParam).map((e) => e.trim()).filter((e) => e) :
     safeParam.split(re).map((e) => e.trim()).filter((e) => e);
 };
-
-module.exports = parseString;

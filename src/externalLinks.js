@@ -1,13 +1,11 @@
-'use strict';
+import { parse } from 'node-html-parser';
+import path from 'node:path';
 
-const {parse} = require('node-html-parser');
-const path = require('path');
-
-const parseOptions = require('./parseOptions');
-const getExcludedHosts = require('./getExcludedHosts');
-const getHostname = require('./getHostname');
-const parseString = require('./parseString');
-const {getOptionRel, concatRel} = require('./handlerRel');
+import parseOptions from './parseOptions.js';
+import getExcludedHosts from './getExcludedHosts.js';
+import getHostname from './getHostname.js';
+import parseString from './parseString.js';
+import {getOptionRel, concatRel} from './handlerRel.js';
 
 const defaultOptions = {
   url: '',
@@ -104,7 +102,7 @@ const getResult = (document, options) => {
  * @param {object} globalOptions
  * @return {string} content
  */
-module.exports = function(content, outputPath, globalOptions = {}) {
+export default function externalLinks(content, outputPath, globalOptions = {}) {
   const options = parseOptions(defaultOptions, globalOptions);
   if (!outputPath || !extensionMatches(path.extname(outputPath), options)) {
     return content;

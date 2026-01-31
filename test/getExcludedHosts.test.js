@@ -1,6 +1,4 @@
-'use strict';
-
-const getExcludedHosts = require('../src/getExcludedHosts');
+import getExcludedHosts from '../src/getExcludedHosts.js';
 
 describe('Test #1. Emplty values', () => {
   test.each([

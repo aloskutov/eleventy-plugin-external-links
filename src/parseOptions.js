@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Safe options
  * @param {object} options
@@ -15,11 +13,9 @@ const safeOptions = (options) => {
  * @param {object} userOptions
  * @return {object}
  */
-const parseOptions = (defaultOptions, userOptions) => {
+export default function parseOptions (defaultOptions, userOptions) {
   const safeDefaultOptions = safeOptions(defaultOptions);
   const safeUserOptions = safeOptions(userOptions);
 
   return Object.assign({}, safeDefaultOptions, safeUserOptions);
 };
-
-module.exports = parseOptions;

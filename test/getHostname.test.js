@@ -1,6 +1,4 @@
-'use strict';
-
-const getHostname = require('../src/getHostname');
+import getHostname from '../src/getHostname.js';
 
 describe('Test #1. Hostname is IP address', () => {
   test.each([

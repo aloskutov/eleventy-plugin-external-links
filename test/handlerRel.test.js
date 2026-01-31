@@ -1,6 +1,4 @@
-'use strict';
-
-const { getOptionRel, concatRel } = require('../src/handlerRel');
+import { getOptionRel, concatRel } from '../src/handlerRel';
 
 describe('rel attribute handler test', () => {
   test('getOptionRel is undefined', () => {

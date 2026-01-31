@@ -1,6 +1,4 @@
-'use strict';
-
-const {getAllowedProtocols, getProtocols} = require('../src/getAllowedProtocols');
+import {getAllowedProtocols, getProtocols} from '../src/getAllowedProtocols.js';
 
 describe('Allowed procols', () => {
   it('Test #1 Empty params', () => {

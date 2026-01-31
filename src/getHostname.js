@@ -1,7 +1,5 @@
-'use strict';
-
-const parseURL = require('./parseURL');
-const {getAllowedProtocols} = require('./getAllowedProtocols');
+import parseURL from './parseURL.js';
+import getAllowedProtocols from './getAllowedProtocols.js';
 
 /**
  * Get hostname from url or link
@@ -9,7 +7,7 @@ const {getAllowedProtocols} = require('./getAllowedProtocols');
  * @param {string|array} excludedProtocols protocol(s) without colon
  * @return {string|boolean} hostname or false
  */
-function getHostname(url = '', excludedProtocols = []) {
+export default function getHostname(url = '', excludedProtocols = []) {
   const parsed = parseURL(url);
   const allowedProtocols = getAllowedProtocols(excludedProtocols);
   const protocol = parsed.groups.protocol ?
@@ -21,5 +19,3 @@ function getHostname(url = '', excludedProtocols = []) {
 
   return hostname;
 }
-
-module.exports = getHostname;

@@ -1,6 +1,5 @@
-'use strict';
+import parseOptions from '../src/parseOptions.js';
 
-const parseOptions = require('../src/parseOptions');
 const defaultOptions = {
   url: '',
   ext: ['.html'],

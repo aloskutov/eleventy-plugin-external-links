@@ -1,7 +1,5 @@
-'use strict';
-
-const getHostname = require('./getHostname');
-const parseString = require('./parseString');
+import getHostname from './getHostname';
+import parseString from './parseString';
 
 /**
  * getExcludedHosts
@@ -9,12 +7,10 @@ const parseString = require('./parseString');
  * @param {array|string} urls
  * @return {array} hosts
  */
-const getExcludedHosts = (urls) => {
+export default (urls) => {
   const safeUrls = Array.isArray(urls) ? urls : urls ? parseString(urls) : [];
 
   return safeUrls.
     map((el) => getHostname(el)).
     filter((el, pos, arr) => el && arr.indexOf(el) === pos);
 };
-
-module.exports = getExcludedHosts;

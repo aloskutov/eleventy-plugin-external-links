@@ -1,6 +1,4 @@
-'use strict';
-
-const parseURL = require('../src/parseURL');
+import parseURL from '../src/parseURL.js';
 
 describe('Test #1. Get protocols. Defined', () => {
   test.each([

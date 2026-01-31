@@ -1,6 +1,4 @@
-'use strict';
-
-const parseString = require('../src/parseString');
+import parseString from '../src/parseString.js';
 
 test('Empty & Undefined', () => {
   expect(parseString()).toStrictEqual([]);

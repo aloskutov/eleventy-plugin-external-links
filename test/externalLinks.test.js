@@ -1,6 +1,4 @@
-'use strict';
-
-const externalLinks = require('../src/externalLinks.js');
+import externalLinks from '../src/externalLinks.js';
 
 describe('OutputPath tests', () => {
   test('outputPath is undefined', () => {
