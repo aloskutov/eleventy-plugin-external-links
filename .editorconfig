@@ -16,5 +16,5 @@ quote_type = single
 insert_final_newline = false
 indent_size = 2
 
-[*.js]
+[*.{js,cjs,mjs,yml}]
 indent_size = 2
