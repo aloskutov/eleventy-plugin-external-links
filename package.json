@@ -3,6 +3,7 @@
   "version": "2.1.1",
   "description": "Eleventy external links plugin",
   "prettier": "@aloskutov/prettier-config",
+  "main": "eleventy.config.js",
   "type": "module",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
@@ -13,7 +14,6 @@
     "coverage": " node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "lint": "npx eslint ./src && npx jshint ./src"
   },
-  "main": ".eleventy.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aloskutov/eleventy-plugin-external-links.git"
