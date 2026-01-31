@@ -1,5 +1,5 @@
-import getHostname from './getHostname';
-import parseString from './parseString';
+import getHostname from './getHostname.js';
+import parseString from './parseString.js';
 
 /**
  * getExcludedHosts
