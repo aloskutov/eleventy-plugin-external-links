@@ -10,9 +10,17 @@
 [![DeepSource](https://deepsource.io/gh/aloskutov/eleventy-plugin-external-links.svg/?label=active+issues&show_trend=true&token=9-CKuKOMvMKrFroeDQ7YK2el)](https://deepsource.io/gh/aloskutov/eleventy-plugin-external-links/?ref=repository-badge)
 [![DeepSource](https://deepsource.io/gh/aloskutov/eleventy-plugin-external-links.svg/?label=resolved+issues&show_trend=true&token=9-CKuKOMvMKrFroeDQ7YK2el)](https://deepsource.io/gh/aloskutov/eleventy-plugin-external-links/?ref=repository-badge)
 
-Transform external links from `<a href='http://external-link'>` to `<a href='http://external-link'  rel='noreferrer nofollow noopener external' target='_blank'>`.
+Transforms external links from `<a href='http://external-link'>` to `<a href='http://external-link'  rel='noreferrer nofollow noopener external' target='_blank'>`.
 
 ## Usage
+
+### Warning
+
+Carefully check the generated code. If the HTML contains errors, the `node-html-parser` module used to process links may remove invalid markup (such as nested or unclosed tags).
+
+To avoid such incidents, I use the `html-validate` npm module in my projects. In dev builds, I run the generated HTML that has not been processed by minifiers or plugins: `html-validate \"./dist/**/*.html\"`.
+
+Simply install the npm package `npm i -D html-validate` and add a `script` to `package.json`: `"test:html": "html-validate './dist/**/*.html'"`, adjusting the path to your generated HTML files as needed.
 
 ### Install via npm
 
@@ -23,10 +31,10 @@ npm install @aloskutov/eleventy-plugin-external-links
 ### Load plugin in `.eleventy.js`
 
 ```javascript
-const externalLinks = require("@aloskutov/eleventy-plugin-external-links");
+import externalLinks from "@aloskutov/eleventy-plugin-external-links";
 
-module.exports = (eleventyConfig) => {
-    eleventyConfig.addPlugin(externalLinks, {'url': 'https://your-domain'});
+export default (eleventyConfig) => {
+    eleventyConfig.addPlugin(externalLinks, { url: 'https://your-domain' });
 };
 ```
 
@@ -34,16 +42,16 @@ module.exports = (eleventyConfig) => {
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| url | string | '' | If not set, all non-relative links are considered external.|
+| url | string | '' | If not set, all non-relative links are considered external. |
 | rel | array or string | ['noreferrer', 'nofollow', 'noopener', 'external'] | link rel attribute |
 | target | string | _blank | link target attribute |
-| overwrite | boolean | true | Overwrite attribute values or not. If the value is false, then the existing attribute is not overwritten. |
+| overwrite | boolean | true | Whether to overwrite existing attribute values. If the value is false, then the existing attribute is not overwritten. |
 | excludedProtocols | array | [] | Exclude links with matching protocols from processing. The protocol must be specified without a colon. Ex. `['ftp']`|
-| doctype | string | '<!doctype html>' | Doctype value |
+| doctype | string | '<!doctype html>' | Doctype string |
 | addDoctype | boolean | _false_ | Add doctype to result or not |
-| ext | array | ['.html'] | Extensions |
+| ext | array | ['.html'] | File extensions to process |
 | excludedDomains | array or string | [] | For cross-linked domains and subdomains. Array or string of values separated by comma, semicolon, tab or space symbols. |
-| enableTarget | boolean | true | Option to enable/disable the 'target' attribute. Default value is `true`, i.e. `target` is enabled. |
+| enableTarget | boolean | true | Whether to add the 'target' attribute. Default value is `true`, i.e. `target` is enabled. |
 
 ### Default options
 
@@ -65,13 +73,13 @@ module.exports = (eleventyConfig) => {
 
 ## Notes
 
-The site address can be specified without a protocol, only the fully qualified domain name. For example, `www.example.com` or `https://www.example.com` or `//www.example.com`
+The site address can be specified with or without a protocol — just the fully qualified domain name is acceptable. For example, `www.example.com` or `https://www.example.com` or `//www.example.com`
 
 Addresses with protocols other than `http`, `https`, `ftp` and `ftps` are excluded from processing and remain unchanged.
 
 ## Examples
 
-### With default values, except url
+### With default values (except `url`)
 
 ```javascript
 const externalLinks = require('@aloskutov/eleventy-plugin-external-links');
@@ -129,7 +137,7 @@ The following links are not processed
 * [x] add `ext`. _List of processed files, not only `.html` files. Default:_ `.html`
 * [x] support IDN (Internationalized Domain Names)
 * [x] add support for partial html code
-* [ ] further reduce the impact on the html source code
+* [ ] Further reduce the impact on the HTML source code.
 
 ## Changes
 
@@ -137,7 +145,7 @@ The following links are not processed
 
 Added `enableTarget` option with default value `true`. If for some reason you need to disable the `target` attribute, set the `enableTarget` option to `false`.
 
-This option does not break backwards compatibility.
+This option does not break backward compatibility.
 
 ### v.2.0
 
