@@ -22,19 +22,30 @@ To avoid such incidents, I use the `html-validate` npm module in my projects. In
 
 Simply install the npm package `npm i -D html-validate` and add a `script` to `package.json`: `"test:html": "html-validate './dist/**/*.html'"`, adjusting the path to your generated HTML files as needed.
 
+## Requirements
+
+- Node.js 18+
+- Eleventy 3+
+
+For Eleventy 2.x support, please install version 2.x of this plugin:
+
+```shell
+npm install -D @aloskutov/eleventy-plugin-external-links@2
+```
+
 ### Install via npm
 
 ```shell
-npm install @aloskutov/eleventy-plugin-external-links
+npm install -D @aloskutov/eleventy-plugin-external-links
 ```
 
 ### Load plugin in `.eleventy.js`
 
 ```javascript
-import externalLinks from "@aloskutov/eleventy-plugin-external-links";
+import externalLinks from '@aloskutov/eleventy-plugin-external-links';
 
 export default (eleventyConfig) => {
-    eleventyConfig.addPlugin(externalLinks, { url: 'https://your-domain' });
+  eleventyConfig.addPlugin(externalLinks, { url: 'https://your-domain' });
 };
 ```
 
@@ -82,9 +93,9 @@ Addresses with protocols other than `http`, `https`, `ftp` and `ftps` are exclud
 ### With default values (except `url`)
 
 ```javascript
-const externalLinks = require('@aloskutov/eleventy-plugin-external-links');
+import externalLinks from '@aloskutov/eleventy-plugin-external-links';
 
-module.exports = (eleventyConfig, options = {}) => {
+export default (eleventyConfig, options = {}) => {
 // some code
 
     eleventyConfig.addPlugin(externalLinks, {url: "www.example.com"});
@@ -95,51 +106,56 @@ module.exports = (eleventyConfig, options = {}) => {
 
 Local links:
 
-* `/some-link`
-* `/?link-with-query-string`
-* `#link-with-id`
-* `https://www.example.com/some-link`
-* `https://www.example.com:443/some-link`
-* `http://www.example.com/some-link`
-* `http://www.example.com:8080/some-link`
-* `ftp://www.example.com/some-link`
-* `//www.example.com/some-link`
-* `www.example.com/some-link`
-* `www.example.com`
+- `/some-link`
+- `/?link-with-query-string`
+- `#link-with-id`
+- `https://www.example.com/some-link`
+- `https://www.example.com:443/some-link`
+- `http://www.example.com/some-link`
+- `http://www.example.com:8080/some-link`
+- `ftp://www.example.com/some-link`
+- `//www.example.com/some-link`
+- `www.example.com/some-link`
+- `www.example.com`
 
 External links
 
-* `http://www.google.com`
-* `http://www.google.com:80`
-* `https://www.google.com`
-* `https://www.google.com:443`
-* `ftp://www.google.com`
-* `protocol://www.google.com`
-* `//www.google.com`
-* `www.google.com`
+- `http://www.google.com`
+- `http://www.google.com:80`
+- `https://www.google.com`
+- `https://www.google.com:443`
+- `ftp://www.google.com`
+- `protocol://www.google.com`
+- `//www.google.com`
+- `www.google.com`
 
 The following links are not processed
 
-* `mailto:some@address.com`
-* `tel:1234567890`
-* `file:/some/file`
-* `javascript:alert(0)`
-* `telnet://192.0.2.16:80/`
-* `urn:oid:1.2.840.113549.1.1.1`
-* `sip:911@pbx.mycompany.com`
-* `news:comp.infosystems.www.servers.unix`
+- `mailto:some@address.com`
+- `tel:1234567890`
+- `file:/some/file`
+- `javascript:alert(0)`
+- `telnet://192.0.2.16:80/`
+- `urn:oid:1.2.840.113549.1.1.1`
+- `sip:911@pbx.mycompany.com`
+- `news:comp.infosystems.www.servers.unix`
 
 ## TODO
 
-* [x] add `excludedDomains`. _List of addresses that will be excluded from processing. These links will not be considered external and will remain unchanged._
-* [x] add `addDoctype`. _Optional doctype_ `<!doctype html>`
-* [x] add `doctype`. _Doctype string. Default:_ `<!doctype html>`
-* [x] add `ext`. _List of processed files, not only `.html` files. Default:_ `.html`
-* [x] support IDN (Internationalized Domain Names)
-* [x] add support for partial html code
-* [ ] Further reduce the impact on the HTML source code.
+- [x] add `excludedDomains`. _List of addresses that will be excluded from processing. These links will not be considered external and will remain unchanged._
+- [x] add `addDoctype`. _Optional doctype_ `<!doctype html>`
+- [x] add `doctype`. _Doctype string. Default:_ `<!doctype html>`
+- [x] add `ext`. _List of processed files, not only `.html` files. Default:_ `.html`
+- [x] support IDN (Internationalized Domain Names)
+- [x] add support for partial html code
+- [ ] Further reduce the impact on the HTML source code.
 
 ## Changes
+
+### 3.0.0 (Upcoming)
+
+- **Breaking:** The plugin is now a pure ESM module. It requires Eleventy v3+ and Node.js 18+.
+- Updated import syntax in examples and documentation.
 
 ### 2.1.0
 
@@ -149,7 +165,7 @@ This option does not break backward compatibility.
 
 ### v.2.0
 
-* Changed html parsing library from `JSDOM` to `node-html-parser`.
-* Increased speed of html code processing.
-* The `addDoctype` option is now, set to `false`.
-* The impact of the parsing library on the html code has been reduced. JSDOM forced wrapping in `<html>` if it was missing. It was not possible to work with code fragments (not wrapped in `<html>`).
+- Changed html parsing library from `JSDOM` to `node-html-parser`.
+- Increased speed of html code processing.
+- The `addDoctype` option is now, set to `false`.
+- The impact of the parsing library on the html code has been reduced. JSDOM forced wrapping in `<html>` if it was missing. It was not possible to work with code fragments (not wrapped in `<html>`).
