@@ -34,7 +34,7 @@
     "url": "https://github.com/aloskutov/eleventy-plugin-external-links/issues"
   },
   "devDependencies": {
-    "eslint": "^9.0.0",
+    "eslint": "^10.0.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^30.0.2",
     "jshint": "^2.13.6"
