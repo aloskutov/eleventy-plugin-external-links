@@ -40,6 +40,6 @@
     "jshint": "^2.13.6"
   },
   "dependencies": {
-    "node-html-parser": "^8.0.2"
+    "node-html-parser": "^9.0.0"
   }
 }
